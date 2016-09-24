@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{245493B1-1D5A-478D-95BD-D78479044E78}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>bus_rode</RootNamespace>
+    <AssemblyName>bus_rode</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>bus_rode_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.0.1.644, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.0.1-ci644\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Kernel\FileIO\Conversion\BusConvertGuideLine.cs" />
+    <Compile Include="Kernel\FileIO\Conversion\BusConvertToStop.cs" />
+    <Compile Include="Kernel\FileIO\Conversion\BusConvertToSubway.cs" />
+    <Compile Include="Kernel\FileIO\FileBlockStruct\LineFileBlockStruct.cs" />
+    <Compile Include="Kernel\FileIO\FileBlockStruct\GuideLineFileBlockStruct.cs" />
+    <Compile Include="Kernel\FileIO\FileBlockStruct\HaveBusFileBlockStruct.cs" />
+    <Compile Include="Kernel\FileIO\FileBlockStruct\ReadmeFileBlockStruct.cs" />
+    <Compile Include="Kernel\FileIO\FileBlockStruct\StopFileBlockStruct.cs" />
+    <Compile Include="Kernel\FileIO\FileBlockStruct\SubwayFileBlockStruct.cs" />
+    <Compile Include="Kernel\FileIO\FileOperation\Reader\BlockReader.cs" />
+    <Compile Include="Kernel\FileIO\FileOperation\Reader\CompletelyReader.cs" />
+    <Compile Include="Kernel\FileIO\FileOperation\Writer\CompletelyWriter.cs" />
+    <Compile Include="Kernel\FileIO\FileOperation\Assistance.cs" />
+    <Compile Include="Kernel\FileIO\FileOperation\Reader\SeekReader.cs" />
+    <Compile Include="Kernel\FileIO\FileOperation\Writer\SeekWriter.cs" />
+    <Compile Include="Kernel\FileIO\FileOperation\Reader\StepReader.cs" />
+    <Compile Include="Kernel\FileIO\FileOperation\Writer\StepWriter.cs" />
+    <Compile Include="Kernel\FileIO\IFileBlockStruct.cs" />
+    <Compile Include="Kernel\Interface\IAutoTranslate.cs" />
+    <Compile Include="Kernel\Management\Assistance\enumListPageOrder.cs" />
+    <Compile Include="Kernel\Management\Feature\RemoteData.cs" />
+    <Compile Include="Kernel\Management\UserInterfaceBlockStruct\LinePageRuntimeBlockStruct.cs" />
+    <Compile Include="Kernel\Management\UserInterfaceBlockStruct\LinePageStopBlockStruct.cs" />
+    <Compile Include="Kernel\Management\UserInterfaceBlockStruct\LinePageSubwayBlockStruct.cs" />
+    <Compile Include="Kernel\Tools\Information.cs" />
+    <Compile Include="Kernel\Tools\ResourcesFileCompression.cs" />
+    <Compile Include="Kernel\Tools\StringGroup.cs" />
+    <Compile Include="Tools\Win32.cs" />
+    <Compile Include="UserInterface\Converter.cs" />
+    <Compile Include="UserInterface\Page\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Page\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Page\LinePage.xaml.cs">
+      <DependentUpon>LinePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Page\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Page\StopPage.xaml.cs">
+      <DependentUpon>StopPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\UserControl\LinePageBusPreview.xaml.cs">
+      <DependentUpon>LinePageBusPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\UserControl\SettingsPageChoiceItem.xaml.cs">
+      <DependentUpon>SettingsPageChoiceItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\UserControl\SettingsPageNormalItem.xaml.cs">
+      <DependentUpon>SettingsPageNormalItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\UserControl\SettingsPageSliderItem.xaml.cs">
+      <DependentUpon>SettingsPageSliderItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\UserControl\SettingsPageToggleButtonItem.xaml.cs">
+      <DependentUpon>SettingsPageToggleButtonItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\UserInterfaceManagement.cs" />
+    <Page Include="Language\DefaultLanguage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Content Include="Language\en-US.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Language\zh-CN.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Kernel\Tools\BigArrayList.cs" />
+    <Compile Include="Kernel\Tools\Language.cs" />
+    <Compile Include="Kernel\Interface\IListDialog.cs" />
+    <Compile Include="Kernel\Interface\IMessageDialog.cs" />
+    <Compile Include="Kernel\Management\AboutManagement.cs" />
+    <Compile Include="Kernel\Management\Feature\AutoTranslate.cs" />
+    <Compile Include="Kernel\Management\Feature\GuideLocal.cs" />
+    <Compile Include="Kernel\Management\Feature\GuideWeb.cs" />
+    <Compile Include="Kernel\Management\Feature\Resoureces.cs" />
+    <Compile Include="Kernel\Management\LineManagement.cs" />
+    <Compile Include="Kernel\Management\SettingManagement.cs" />
+    <Compile Include="Kernel\Management\StopManagement.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="UserInterface\Page\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Page\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Page\LinePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Page\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Page\StopPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\UserControl\LinePageBusPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\UserControl\SettingsPageChoiceItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\UserControl\SettingsPageNormalItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\UserControl\SettingsPageSliderItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\UserControl\SettingsPageToggleButtonItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UserInterface\Dialog\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bus_rode_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bus_rode_icon.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

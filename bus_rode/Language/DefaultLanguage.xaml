@@ -1,0 +1,74 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!-- this resources is root language resources file.
+    please use this file to convert to another language resources files.
+    this file mustn't rewrite except developer change the version of application.
+    -->
+    
+    
+    <!-- the area of user interface
+    the key head of this area's resources is: langUI-->
+
+    <!-- line page-->
+    <sys:String x:Key="langUILinePageTitle">线路</sys:String>
+
+    <sys:String x:Key="langUILinePageLineTransform">线路方向切换</sys:String>
+    <sys:String x:Key="langUILinePageFlushRuntimeData">正在刷新实时信息</sys:String>
+    <sys:String x:Key="langUILinePageSwitchLine">切换线路</sys:String>
+    <sys:String x:Key="langUILinePageSearchStopInLine">线路内搜索</sys:String>
+
+    <sys:String x:Key="langUILinePageItemDataReturn">返回至站台列表</sys:String>
+    <sys:String x:Key="langUILinePageItemDataRuntime">实时数据</sys:String>
+    <sys:String x:Key="langUILinePageItemDataSubwayExit">地铁站出口</sys:String>
+
+    <!-- settings page-->
+    <sys:String x:Key="langUISettingsPageTitle">设置</sys:String>
+
+    <sys:String x:Key="langUISettingsPageNormalPageTitle">常规</sys:String>
+    <sys:String x:Key="langUISettingsPageNormalPageSpeechTitle">讲述人</sys:String>
+    <sys:String x:Key="langUISettingsPageNormalPageSpeechDescription">帮助视力不佳的人朗读屏幕上的内容（在任意界面按下 F1 键以朗读）</sys:String>
+    <sys:String x:Key="langUISettingsPageNormalPageAutoTranslateTitle">自动翻译</sys:String>
+    <sys:String x:Key="langUISettingsPageNormalPageAutoTranslateDescription">当使用非显示语言资源的时候，自动转换资源文本为显示语言</sys:String>
+    <sys:String x:Key="langUISettingsPageNormalPageLanguageTitle">语言</sys:String>
+    <sys:String x:Key="langUISettingsPageNormalPageLanguageDescription">选择显示的语言</sys:String>
+    <sys:String x:Key="langUISettingsPageNormalPageRestartTitle">重新启动应用程序</sys:String>
+    <sys:String x:Key="langUISettingsPageNormalPageRestartDescription">重启解决一些偶然性问题</sys:String>
+
+    <sys:String x:Key="langUISettingsPageRuntimePageTitle">实时</sys:String>
+    <sys:String x:Key="langUISettingsPageRuntimePageMonitorTitle">车辆跟踪</sys:String>
+    <sys:String x:Key="langUISettingsPageRuntimePageMonitorDescription">对处在运营状态的车次到达站次显示在线路图上</sys:String>
+    <sys:String x:Key="langUISettingsPageRuntimePageReplaceTitle">替换车辆跟踪插件</sys:String>
+    <sys:String x:Key="langUISettingsPageRuntimePageReplaceDescription">车辆跟踪插件可以方便地安全地获取到你所在城市的实时公交信息并显示在bus_rode上，对于不同的城市，应选用不同的插件</sys:String>
+    <sys:String x:Key="langUISettingsPageRuntimePageDeleteTitle">删除插件</sys:String>
+    <sys:String x:Key="langUISettingsPageRuntimePageDeleteDescription">删除当前加载的插件，使得bus_rode无法显示实时公交信息</sys:String>
+    <sys:String x:Key="langUISettingsPageRuntimePageInformationTitle">插件信息</sys:String>
+    <sys:String x:Key="langUISettingsPageRuntimePageInformationDescription">显示当前车辆跟踪插件的信息</sys:String>
+
+    <sys:String x:Key="langUISettingsPageResourcesPageTitle">资源</sys:String>
+    <sys:String x:Key="langUISettingsPageResourcesPageReplaceTitle">替换资源</sys:String>
+    <sys:String x:Key="langUISettingsPageResourcesPageReplaceDescription">替换加载的资源，便于切换到其他城市进行指引</sys:String>
+    <sys:String x:Key="langUISettingsPageResourcesPageDeleteTitle">删除加载的资源</sys:String>
+    <sys:String x:Key="langUISettingsPageResourcesPageDeleteDescription">删除当前加载的资源，则下一次启动，bus_rode将会以无资源模式启动</sys:String>
+    <sys:String x:Key="langUISettingsPageResourcesPageInformationTitle">资源信息</sys:String>
+    <sys:String x:Key="langUISettingsPageResourcesPageInformationDescription">显示当前资源的信息</sys:String>
+
+    <sys:String x:Key="langUISettingsPageStylePageTitle">个性化</sys:String>
+    <sys:String x:Key="langUISettingsPageStylePageBackgroundTitle">替换背景</sys:String>
+    <sys:String x:Key="langUISettingsPageStylePageBackgroundDescription">选用一张新的背景图片作为背景</sys:String>
+    <sys:String x:Key="langUISettingsPageStylePageDarknessTitle">背景暗化</sys:String>
+    <sys:String x:Key="langUISettingsPageStylePageDarknessDescription">选取一个百分比决定背景暗化程度</sys:String>
+    <sys:String x:Key="langUISettingsPageStylePageColorThemeTitle">更改配色</sys:String>
+    <sys:String x:Key="langUISettingsPageStylePageColorThemeDescription">选取一个新的颜色主题来替换现有颜色主题</sys:String>
+
+    <!-- about page-->
+    <sys:String x:Key="langUIAboutPageTitle">关于</sys:String>
+
+
+    <!-- the area of code
+    the key head of this area's resources is: langCode-->
+
+    <!-- line page-->
+    <sys:String x:Key="langCodeLinePageStopItemRuntime">此站有{0}辆车</sys:String>
+
+</ResourceDictionary>

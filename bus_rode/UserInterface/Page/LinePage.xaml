@@ -1,0 +1,281 @@
+﻿<UserControl x:Class="bus_rode.UserInterface.Page.LinePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:bus_rode.UserInterface.Page"
+             xmlns:uiControl="clr-namespace:bus_rode.UserInterface.UserControl"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converter="clr-namespace:bus_rode.UserInterface.Converter"
+             mc:Ignorable="d" TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             d:DesignHeight="600" d:DesignWidth="800" FontFamily="Microsoft YaHei UI Light">
+
+    <!-- 转换器资源-->
+    <UserControl.Resources>
+        <converter:MiddleListWidthConverter x:Key="middleListWidthConverter"/>
+
+        <converter:SliderMessageGridOpacity x:Key="sliderMessageGridOpacity"/>
+        <converter:SliderMessageGridHeight x:Key="sliderMessageGridHeight"/>
+    </UserControl.Resources>
+
+    <Grid x:Name="uiLinePageBackground">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- head-->
+        <Grid Grid.Row="0" Background="{DynamicResource PrimaryHueDarkBrush}">
+            <!-- 特效-->
+            <Grid.Effect>
+                <DropShadowEffect Opacity="0.5" ShadowDepth="2" Direction="270" BlurRadius="10"/>
+            </Grid.Effect>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="56"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Background="#00000000" BorderThickness="0" Height="56">
+                <materialDesign:PackIcon Kind="ArrowLeft" Height="32" Width="32" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+            </Button>
+
+            <TextBlock Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Grid.Column="1" FontSize="24" Text="{DynamicResource langUILinePageTitle}" VerticalAlignment="Center"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="3" Height="56">
+                <Button Background="#00000000" BorderThickness="0" Height="56" ToolTipService.Placement="Bottom" ToolTip="{DynamicResource langUILinePageSwitchLine}">
+                    <materialDesign:PackIcon Kind="Rotate3d" Height="32" Width="32" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+                </Button>
+                <Button Background="#00000000" BorderThickness="0" Height="56" ToolTipService.Placement="Bottom" ToolTip="{DynamicResource langUILinePageSearchStopInLine}">
+                    <materialDesign:PackIcon Kind="Magnify" Height="32" Width="32" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+                </Button>
+            </StackPanel>
+
+        </Grid>
+
+        <!-- big title-->
+        <Grid Grid.Row="1" Background="{DynamicResource PrimaryHueMidBrush}">
+            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,16,0,16" FontSize="24" Text="6路" VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- detail-->
+        <StackPanel Grid.Row="2" Orientation="Vertical" Background="{DynamicResource PrimaryHueMidBrush}" Margin="0,-1,0,0" 
+                    Height="{Binding ElementName=uiMainListScrollViewer,Path=ContentVerticalOffset,Converter={StaticResource sliderMessageGridHeight}}"
+                    Opacity="{Binding ElementName=uiMainListScrollViewer,Path=ContentVerticalOffset,Converter={StaticResource sliderMessageGridOpacity}}">
+
+            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,4,0,4" Grid.Column="1" FontSize="16" Text="message 1"/>
+            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,4,0,4" Grid.Column="1" FontSize="16" Text="message 1"/>
+            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,4,0,4" Grid.Column="1" FontSize="16" Text="message 1"/>
+            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,4,0,4" Grid.Column="1" FontSize="16" Text="message 1"/>
+            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,4,0,14" Grid.Column="1" FontSize="16" Text="message 1"/>
+
+        </StackPanel>
+
+        <ProgressBar Visibility="Collapsed" Grid.Row="3" BorderThickness="0" IsIndeterminate="True" Background="#00000000" BorderBrush="#00000000" Margin="0,-1,0,0"/>
+
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="28"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+
+                <!-- 给线路站点预览器留的位置，跟vs滚动条右侧的东西差不多-->
+                <ColumnDefinition Width="15"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- 侧边线路站点预览器-->
+            <uiControl:LinePageBusPreview Grid.Column="1" Grid.RowSpan="2"/>
+
+            <!-- 刷新按钮-->
+            <StackPanel Visibility="Collapsed" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.RowSpan="2" Margin="0,16,0,0">
+
+                <materialDesign:Card UniformCornerRadius="14" Padding="4" HorizontalAlignment="Center">
+                    <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
+                         Value="50"
+                         IsIndeterminate="True"/>
+                </materialDesign:Card>
+                <materialDesign:Card Background="{DynamicResource PrimaryHueMidBrush}" Margin="0,4,0,0">
+                    <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" FontSize="16" Text="{DynamicResource langUILinePageFlushRuntimeData}" Margin="4" HorizontalAlignment="Center"/>
+                </materialDesign:Card>
+            </StackPanel>
+
+            <!-- 主容器-->
+            <ScrollViewer x:Name="uiMainListScrollViewer" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+                <!-- 内容-->
+                <Grid HorizontalAlignment="Center" Width="{Binding ElementName=uiLinePageBackground,Path=ActualWidth,Converter={StaticResource middleListWidthConverter}}" Margin="0,0,-17,0">
+
+                    <!-- stop-->
+                    <materialDesign:Card x:Name="uiDataStop" VerticalAlignment="Top" Margin="5,10,5,10" HorizontalAlignment="Stretch">
+                        <ListBox x:Name="uiDataStopList" Background="#00000000" BorderThickness="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+
+                                    <Grid Height="50">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- stop ellipse-->
+                                        <Grid>
+                                            <Line Stroke="{DynamicResource PrimaryHueMidBrush}" StrokeThickness="5" Y1="0" Y2="15" X1="25" X2="25"
+                                      StrokeEndLineCap="Round" StrokeDashCap="Round" StrokeStartLineCap="Round" StrokeLineJoin="Round"/>
+                                            <Line Stroke="{DynamicResource PrimaryHueMidBrush}" StrokeThickness="5" Y1="35" Y2="50" X1="25" X2="25"
+                                      StrokeEndLineCap="Round" StrokeDashCap="Round" StrokeStartLineCap="Round" StrokeLineJoin="Round"/>
+
+                                            <Ellipse Fill="#00000000" Stroke="{DynamicResource PrimaryHueMidBrush}" StrokeThickness="5" Width="20" Height="20"
+                                         VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Grid>
+
+                                        <!-- name-->
+                                        <Grid Grid.Column="1">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Text="{Binding Name}" FontSize="18" Grid.Row="1"/>
+                                            <TextBlock Text="{Binding RuntimeDescription}" Opacity="0.5" FontSize="14" Grid.Row="2" Visibility="{Binding RuntimeVisibility}"/>
+                                        </Grid>
+
+                                    </Grid>
+
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+
+                    </materialDesign:Card>
+
+                    <!-- detail-->
+                    <StackPanel x:Name="uiDataDetail" Orientation="Vertical" VerticalAlignment="Top" Margin="5,10,5,10" Visibility="Collapsed">
+
+                        <materialDesign:Card Margin="0,5,0,5">
+                            <Grid>
+                                <Button Background="#00000000" BorderThickness="0" Height="30"/>
+                                <StackPanel Orientation="Horizontal" Height="30">
+                                    <Grid Margin="5,0,0,0" VerticalAlignment="Center" Width="30">
+                                        <materialDesign:PackIcon Kind="ChevronLeft" Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <TextBlock FontSize="14" VerticalAlignment="Center"
+                                               Text="{DynamicResource langUILinePageItemDataReturn}" FontFamily="Microsoft YaHei UI"/>
+
+                                </StackPanel>
+                            </Grid>
+                            
+
+
+
+                            <!-- 4b (hex) = 75 (dec) = ff (hex) * 0.3-->
+
+                        </materialDesign:Card>
+
+                        <materialDesign:Card Margin="0,5,0,5">
+                            <StackPanel Orientation="Vertical">
+
+                                <!-- 4b (hex) = 75 (dec) = ff (hex) * 0.3-->
+                                <Grid Height="30" Background="#ff7f7f7f">
+                                    <TextBlock Foreground="{DynamicResource PrimaryHueDarkBrush}" FontSize="14" VerticalAlignment="Center" Margin="16,0,0,0"
+                                               Text="{DynamicResource langUILinePageItemDataRuntime}" FontFamily="Microsoft YaHei UI"/>
+                                </Grid>
+
+                                <ListBox x:Name="uiDataRuntimeList" Background="#00000000" BorderThickness="0">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+
+                                            <Grid Margin="8,0,0,0" Height="32">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="32"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <materialDesign:PackIcon Kind="Bus" Height="24" Width="24" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                <TextBlock FontSize="12" Text="{Binding ID}" Grid.Column="1" VerticalAlignment="Center"/>
+                                            </Grid>
+
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                            </StackPanel>
+                        </materialDesign:Card>
+
+                        <materialDesign:Card Margin="0,5,0,5">
+                            <StackPanel Orientation="Vertical">
+
+                                <!-- 4b (hex) = 75 (dec) = ff (hex) * 0.3-->
+                                <Grid Height="30" Background="#ff7f7f7f">
+                                    <TextBlock Foreground="{DynamicResource PrimaryHueDarkBrush}" FontSize="14" VerticalAlignment="Center" Margin="16,0,0,0"
+                                               Text="{DynamicResource langUILinePageItemDataSubwayExit}" FontFamily="Microsoft YaHei UI"/>
+                                </Grid>
+
+                                <ListBox x:Name="uiDataSubwayList" Background="#00000000" BorderThickness="0">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+
+                                            <Grid Height="38">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="32"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <materialDesign:PackIcon Kind="LogoutVariant" Height="24" Width="24" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                <Grid Grid.Column="1">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <TextBlock FontSize="12" Text="{Binding ExitName}" Grid.Column="1" VerticalAlignment="Bottom"/>
+                                                    <TextBlock FontSize="12" Text="{Binding ExitDescription}" Grid.Column="1" VerticalAlignment="Top" Grid.Row="1"/>
+                                                </Grid>
+
+                                            </Grid>
+
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                            </StackPanel>
+                        </materialDesign:Card>
+
+                    </StackPanel>
+
+                </Grid>
+            </ScrollViewer>
+
+            <!-- 给侧边预览器留的位置-->
+            <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"/>
+
+            <!-- 悬浮按钮-->
+            <Grid Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                        Grid.Column="4" HorizontalAlignment="Left" Height="56" Width="56" Margin="0,-28,0,0" 
+                        ToolTip="{DynamicResource langUILinePageLineTransform}">
+                    <materialDesign:PackIcon Kind="SwapHorizontal" Height="32" Width="32"/>
+                </Button>
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+
+
+
+</UserControl>

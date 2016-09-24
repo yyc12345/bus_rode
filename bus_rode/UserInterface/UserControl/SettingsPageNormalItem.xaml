@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="bus_rode.UserInterface.UserControl.SettingsPageNormalItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:bus_rode.UserInterface.UserControl"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             d:DesignHeight="100" d:DesignWidth="400">
+
+    <Grid x:Name="uiUserControlBackground">
+        <Button Style="{DynamicResource MaterialDesignFlatButton}" Background="#00000000" BorderThickness="0" Margin="0" Width="{Binding ElementName=uiUserControlBackground,Path=ActualWidth}" Height="{Binding ElementName=uiUserControlBackground,Path=ActualHeight}"/>
+        
+        <StackPanel Orientation="Vertical">
+            <TextBlock x:Name="uiTitle" FontSize="16" Grid.Row="0" Margin="16,16,16,16" VerticalAlignment="Center" HorizontalAlignment="Left" Text=""/>
+            <TextBlock x:Name="uiDescription" Foreground="Gray" FontSize="14" Grid.Row="1" Margin="16,0,16,16" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" TextWrapping="Wrap"/>
+        </StackPanel>
+
+        
+    </Grid>
+
+</UserControl>

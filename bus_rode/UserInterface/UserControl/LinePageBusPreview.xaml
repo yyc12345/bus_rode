@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="bus_rode.UserInterface.UserControl.LinePageBusPreview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:bus_rode.UserInterface.UserControl"
+             mc:Ignorable="d" Width="15"
+             d:DesignHeight="300" d:DesignWidth="15">
+    <Grid x:Name="uiUserControlBackground">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="5"/>
+        </Grid.ColumnDefinitions>
+
+        <Path x:Name="uiSign" Stroke="Black" StrokeThickness="1" Fill="#e16f00"
+              Height="10" Width="10" Grid.Column="0" VerticalAlignment="Center"
+              Visibility="Collapsed">
+            <Path.Data>
+                <PathGeometry>
+
+                    <PathGeometry.Figures>
+                        <PathFigure StartPoint="1,0" IsClosed="True">
+                            <LineSegment Point="10,5" />
+                            <LineSegment Point="1,10" />
+                            <LineSegment Point="1,0" />
+                        </PathFigure>
+                    </PathGeometry.Figures>
+
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        
+    </Grid>
+</UserControl>

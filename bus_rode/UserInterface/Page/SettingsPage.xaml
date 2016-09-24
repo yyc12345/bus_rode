@@ -1,0 +1,119 @@
+﻿<UserControl x:Class="bus_rode.UserInterface.Page.SettingsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:bus_rode.UserInterface.Page"
+             xmlns:uiControl="clr-namespace:bus_rode.UserInterface.UserControl"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converter="clr-namespace:bus_rode.UserInterface.Converter"
+             mc:Ignorable="d" TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             d:DesignHeight="400" d:DesignWidth="800" FontFamily="Microsoft YaHei UI Light">
+
+    <!-- 转换器资源-->
+    <UserControl.Resources>
+        <converter:MiddleListWidthConverter x:Key="middleListWidthConverter"/>
+    </UserControl.Resources>
+
+    <Grid x:Name="uiSettingsPageBackground">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="{DynamicResource PrimaryHueDarkBrush}">
+            <!-- 特效-->
+            <Grid.Effect>
+                <DropShadowEffect Opacity="0.5" ShadowDepth="2" Direction="270" BlurRadius="10"/>
+            </Grid.Effect>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="56"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Background="#00000000" BorderThickness="0" Height="56">
+                <materialDesign:PackIcon Kind="ArrowLeft" Height="32" Width="32" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+            </Button>
+
+            <TextBlock Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Grid.Column="1" FontSize="24" Text="{DynamicResource langUISettingsPageTitle}" VerticalAlignment="Center"/>
+
+        </Grid>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel x:Name="uiSettingMainContainer" Orientation="Vertical" HorizontalAlignment="Center" Width="{Binding ElementName=uiSettingsPageBackground,Path=ActualWidth,Converter={StaticResource middleListWidthConverter}}" Margin="0,0,-17,0">
+
+
+                <materialDesign:Card Margin="0,5,0,5">
+                    <StackPanel Orientation="Vertical">
+
+                        <!-- 4b (hex) = 75 (dec) = ff (hex) * 0.3-->
+                        <Grid Height="30" Background="#ff7f7f7f">
+                            <TextBlock Foreground="{DynamicResource PrimaryHueDarkBrush}" FontSize="14" VerticalAlignment="Center" Margin="16,0,0,0" Text="{DynamicResource langUISettingsPageNormalPageTitle}" FontFamily="Microsoft YaHei UI"/>
+                        </Grid>
+                        
+                        <uiControl:SettingsPageToggleButtonItem Title="{DynamicResource langUISettingsPageNormalPageSpeechTitle}" Description="{DynamicResource langUISettingsPageNormalPageSpeechDescription}" Margin="0"/>
+                        <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
+                        <uiControl:SettingsPageToggleButtonItem Title="{DynamicResource langUISettingsPageNormalPageAutoTranslateTitle}" Description="{DynamicResource langUISettingsPageNormalPageAutoTranslateDescription}" Margin="0"/>
+                        <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
+                        <uiControl:SettingsPageChoiceItem Title="{DynamicResource langUISettingsPageNormalPageLanguageTitle}" Description="{DynamicResource langUISettingsPageNormalPageLanguageDescription}" ChoiceWords="" Margin="0"/>
+                        <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
+                        <uiControl:SettingsPageNormalItem Title="{DynamicResource langUISettingsPageNormalPageRestartTitle}" Description="{DynamicResource langUISettingsPageNormalPageRestartDescription}" Margin="0"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+
+                <materialDesign:Card Margin="0,5,0,5">
+                    <StackPanel Orientation="Vertical">
+                        <Grid Height="30" Background="#ff7f7f7f">
+                            <TextBlock Foreground="{DynamicResource PrimaryHueDarkBrush}" VerticalAlignment="Center" Margin="16,0,0,0" FontSize="14" Text="{DynamicResource langUISettingsPageRuntimePageTitle}" FontFamily="Microsoft YaHei UI"/>
+                        </Grid>
+                        
+                        <uiControl:SettingsPageToggleButtonItem Title="{DynamicResource langUISettingsPageRuntimePageMonitorTitle}" Description="{DynamicResource langUISettingsPageRuntimePageMonitorDescription}" Margin="0"/>
+                        <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
+                        <uiControl:SettingsPageNormalItem Title="{DynamicResource langUISettingsPageRuntimePageReplaceTitle}" Description="{DynamicResource langUISettingsPageRuntimePageReplaceDescription}" Margin="0"/>
+                        <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
+                        <uiControl:SettingsPageNormalItem Title="{DynamicResource langUISettingsPageRuntimePageDeleteTitle}" Description="{DynamicResource langUISettingsPageRuntimePageDeleteDescription}" Margin="0"/>
+                        <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
+                        <uiControl:SettingsPageNormalItem Title="{DynamicResource langUISettingsPageRuntimePageInformationTitle}" Description="{DynamicResource langUISettingsPageRuntimePageInformationDescription}" Margin="0"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <materialDesign:Card Margin="0,5,0,5">
+                    <StackPanel Orientation="Vertical">
+                        <Grid Height="30" Background="#ff7f7f7f">
+                            <TextBlock Foreground="{DynamicResource PrimaryHueDarkBrush}" VerticalAlignment="Center" Margin="16,0,0,0" FontSize="14" Text="{DynamicResource langUISettingsPageResourcesPageTitle}" FontFamily="Microsoft YaHei UI"/>
+                        </Grid>
+                        
+
+                        <uiControl:SettingsPageNormalItem Title="{DynamicResource langUISettingsPageResourcesPageReplaceTitle}" Description="{DynamicResource langUISettingsPageResourcesPageReplaceDescription}" Margin="0"/>
+                        <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
+                        <uiControl:SettingsPageNormalItem Title="{DynamicResource langUISettingsPageResourcesPageDeleteTitle}" Description="{DynamicResource langUISettingsPageResourcesPageDeleteDescription}" Margin="0"/>
+                        <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
+                        <uiControl:SettingsPageNormalItem Title="{DynamicResource langUISettingsPageResourcesPageInformationTitle}" Description="{DynamicResource langUISettingsPageResourcesPageInformationDescription}" Margin="0"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <materialDesign:Card Margin="0,5,0,5">
+                    <StackPanel Orientation="Vertical">
+                        <Grid Height="30" Background="#ff7f7f7f">
+                            <TextBlock Foreground="{DynamicResource PrimaryHueDarkBrush}" VerticalAlignment="Center" Margin="16,0,0,0" FontSize="14" Text="{DynamicResource langUISettingsPageStylePageTitle}" FontFamily="Microsoft YaHei UI"/>
+                        </Grid>
+                        
+
+                        <uiControl:SettingsPageNormalItem Title="{DynamicResource langUISettingsPageStylePageBackgroundTitle}" Description="{DynamicResource langUISettingsPageStylePageBackgroundDescription}" Margin="0"/>
+                        <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
+                        <uiControl:SettingsPageSliderItem Title="{DynamicResource langUISettingsPageStylePageDarknessTitle}" Description="{DynamicResource langUISettingsPageStylePageDarknessDescription}" ConverterParam="{}{0}%" Margin="0" Maximum="100" Minimum="0" Value="0"/>
+                        <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
+                        <uiControl:SettingsPageChoiceItem Title="{DynamicResource langUISettingsPageStylePageColorThemeTitle}" Description="{DynamicResource langUISettingsPageStylePageColorThemeDescription}" ChoiceWords="" Margin="0"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+
+            </StackPanel>
+        </ScrollViewer>
+
+
+    </Grid>
+</UserControl>

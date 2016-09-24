@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- the area of user interface
+    the key head of this area's resources is: langUI_-->
+
+
+
+    <!-- the area of code
+    the key head of this area's resources is: langCode_-->
+
+
+
+
+</ResourceDictionary>
