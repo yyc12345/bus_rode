@@ -4,12 +4,8 @@
 
 ---
 #### 概述
-本文档旨在说明Bus\_rode在资源压缩文件中是如何将多个文件合并到一个文件中并加以分发的。本文件格式适用于Bus\_rode各个平台
-
----
-#### 适用平台
-OS：Windows,Windows Mobile  
-Bus_rode Version：Build大于等于9000
+有时候，我们不希望重复下载本地公共交通信息，所以您可以在其下载完之后选择将其打包为资源压缩文件然后以用于后续的各种使用，需要时只需将其加载即可  
+本文档旨在说明Bus\_rode在资源压缩文件中是如何将多个文件合并到一个文件中并加以分发的。本文件格式适用于Bus\_rode各个平台  
 
 ---
 #### 文件格式
@@ -48,7 +44,7 @@ TIPS:
 
 ---
 #### 读取原理
-本部分将大致介绍打包解包过程，如若需要详细内容，请查看[~~相关源代码~~](https://github.com)  
+本部分将大致介绍打包解包过程，如若需要详细内容，请查看[相关源代码](https://github.com/yyc12345/bus_rode/blob/master/bus_rode/Kernel/Tools/ResourcesFileCompression.cs)  
 
 我们使用System.IO下的BinaryReader和BinaryWriter来进行相关读写操作，主要使用的方法：
 * [BinaryWriter](https://msdn.microsoft.com/zh-cn/library/system.io.binarywriter(v=vs.110).aspx)
@@ -73,6 +69,9 @@ TIPS:
 
 ###### 2016/6/7 9:58
 更改文件结构，因为bus\_rode需要的文件变化了
+
+###### 2016/9/24 17:44
+补充代码链接地址，修正说法。因为bus\_rode的资源获取方式有所更改
 
 ---
 #### 后记

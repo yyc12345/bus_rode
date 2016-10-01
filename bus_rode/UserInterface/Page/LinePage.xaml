@@ -157,7 +157,7 @@
                     </materialDesign:Card>
 
                     <!-- detail-->
-                    <StackPanel x:Name="uiDataDetail" Orientation="Vertical" VerticalAlignment="Top" Margin="5,10,5,10" Visibility="Collapsed">
+                    <StackPanel x:Name="uiDataDetail" Orientation="Vertical" VerticalAlignment="Top" Margin="5,10,5,10">
 
                         <materialDesign:Card Margin="0,5,0,5">
                             <Grid>
@@ -171,7 +171,7 @@
 
                                 </StackPanel>
                             </Grid>
-                            
+
 
 
 
@@ -251,9 +251,6 @@
 
                 </Grid>
             </ScrollViewer>
-
-            <!-- 给侧边预览器留的位置-->
-            <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"/>
 
             <!-- 悬浮按钮-->
             <Grid Grid.ColumnSpan="2">

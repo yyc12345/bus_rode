@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bus_rode.Kernel.Management.Feature {
-
+namespace bus_rode.Kernel.Network {
     /// <summary>
     /// 自动翻译
     /// </summary>
@@ -13,5 +12,4 @@ namespace bus_rode.Kernel.Management.Feature {
 
 
     }
-
 }

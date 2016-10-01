@@ -23,7 +23,7 @@ This is a convenient application which can monitor bus and show city's public tr
 
 *TIPS:*  
 * You must have a local bus resource or a dll that can get the bus and stop information to test this application.  
-* The kernel is separated from the user interface. So you can use this kernel to develop some application that are ran in the different platform, but I never promise the thing that all of this kernel's sentences can be compiled normally.\(I never have some encourge to develop a cross-platform application, but you can du it.\)  
+* The kernel is separated from the user interface. So you can use this kernel to develop some application that are ran in the different platform, but I never promise the thing that all of this kernel's sentences can be compiled normally.\(I never have some encourge to develop a cross-platform application, but you can do it.\)  
 
 ---
 #### Recent plan  

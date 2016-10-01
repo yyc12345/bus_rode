@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bus_rode.Kernel.Management.Feature
-{
-    public class Resoureces
-    {
+namespace bus_rode.Kernel.Network {
+    public class GuideWeb {
     }
 }

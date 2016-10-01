@@ -88,13 +88,18 @@
     <Compile Include="Kernel\FileIO\FileOperation\Writer\StepWriter.cs" />
     <Compile Include="Kernel\FileIO\IFileBlockStruct.cs" />
     <Compile Include="Kernel\Interface\IAutoTranslate.cs" />
+    <Compile Include="Kernel\Local\GuideLocal.cs" />
     <Compile Include="Kernel\Management\Assistance\enumListPageOrder.cs" />
-    <Compile Include="Kernel\Management\Feature\RemoteData.cs" />
     <Compile Include="Kernel\Management\UserInterfaceBlockStruct\LinePageRuntimeBlockStruct.cs" />
     <Compile Include="Kernel\Management\UserInterfaceBlockStruct\LinePageStopBlockStruct.cs" />
     <Compile Include="Kernel\Management\UserInterfaceBlockStruct\LinePageSubwayBlockStruct.cs" />
+    <Compile Include="Kernel\Network\AutoTranslate.cs" />
+    <Compile Include="Kernel\Network\GuideWeb.cs" />
+    <Compile Include="Kernel\ResourcesReflection\IDllReflection.cs" />
+    <Compile Include="Kernel\ResourcesReflection\MonitorDllReflection.cs" />
+    <Compile Include="Kernel\ResourcesReflection\ResourcesDllReflection.cs" />
     <Compile Include="Kernel\Tools\Information.cs" />
-    <Compile Include="Kernel\Tools\ResourcesFileCompression.cs" />
+    <Compile Include="Kernel\FileIO\ResourcesFileCompression.cs" />
     <Compile Include="Kernel\Tools\StringGroup.cs" />
     <Compile Include="Tools\Win32.cs" />
     <Compile Include="UserInterface\Converter.cs" />
@@ -112,6 +117,9 @@
     </Compile>
     <Compile Include="UserInterface\Page\StopPage.xaml.cs">
       <DependentUpon>StopPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\UserControl\LinePageBusItem.xaml.cs">
+      <DependentUpon>LinePageBusItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserInterface\UserControl\LinePageBusPreview.xaml.cs">
       <DependentUpon>LinePageBusPreview.xaml</DependentUpon>
@@ -156,10 +164,6 @@
     <Compile Include="Kernel\Interface\IListDialog.cs" />
     <Compile Include="Kernel\Interface\IMessageDialog.cs" />
     <Compile Include="Kernel\Management\AboutManagement.cs" />
-    <Compile Include="Kernel\Management\Feature\AutoTranslate.cs" />
-    <Compile Include="Kernel\Management\Feature\GuideLocal.cs" />
-    <Compile Include="Kernel\Management\Feature\GuideWeb.cs" />
-    <Compile Include="Kernel\Management\Feature\Resoureces.cs" />
     <Compile Include="Kernel\Management\LineManagement.cs" />
     <Compile Include="Kernel\Management\SettingManagement.cs" />
     <Compile Include="Kernel\Management\StopManagement.cs" />
@@ -184,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserInterface\Page\StopPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\UserControl\LinePageBusItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

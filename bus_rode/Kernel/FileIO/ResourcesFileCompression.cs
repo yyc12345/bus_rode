@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.IO;
 using bus_rode.Kernel.Tools;
 
-namespace bus_rode.Kernel.Tools {
+namespace bus_rode.Kernel.FileIO {
     /// <summary>
     /// 解压缩文件类
     /// </summary>
@@ -25,18 +25,14 @@ namespace bus_rode.Kernel.Tools {
         /// <param name="fileFolder">输入文件所在的文件夹，需要加\</param>
         /// <param name="fileVersion">需要输入的build版本号</param>
         /// <returns></returns>
-        public bool Compress(object outFilePath, object fileFolder, long fileVersion) {
-            //转换
-            string _outFilePath, _fileFolder;
-            _outFilePath = (string)outFilePath;
-            _fileFolder = (string)fileFolder;
+        public bool Compress(string outFilePath, string fileFolder, long fileVersion) {
 
             //检查
-            if (CheckFolder(_fileFolder) == false) { return false; }
-            if (File.Exists(_outFilePath) == true) { File.Delete(_outFilePath); }
+            if (CheckFolder(fileFolder) == false) { return false; }
+            if (File.Exists(outFilePath) == true) { File.Delete(outFilePath); }
 
             //开始保存
-            FileStream outFile = new FileStream(_outFilePath, FileMode.Create, FileAccess.Write, FileShare.Write);
+            FileStream outFile = new FileStream(outFilePath, FileMode.Create, FileAccess.Write, FileShare.Write);
             BinaryReader br;
             BinaryWriter bw = new BinaryWriter(outFile, System.Text.Encoding.UTF8);
 
@@ -56,7 +52,7 @@ namespace bus_rode.Kernel.Tools {
 
             //读取文件写入
             for (int a = 0; a < fileArray.Length; a++) {
-                intoFile = new FileStream(_fileFolder + fileArray[a], FileMode.Open, FileAccess.Read, FileShare.Read);
+                intoFile = new FileStream(fileFolder + fileArray[a], FileMode.Open, FileAccess.Read, FileShare.Read);
                 br = new BinaryReader(intoFile, System.Text.Encoding.UTF8);
 
                 //读取循环
@@ -94,7 +90,7 @@ namespace bus_rode.Kernel.Tools {
             outFile.Dispose();
 
             //覆写
-            FileStream outFileProcess = new FileStream(_outFilePath, FileMode.Open, FileAccess.Write, FileShare.Write);
+            FileStream outFileProcess = new FileStream(outFilePath, FileMode.Open, FileAccess.Write, FileShare.Write);
             BinaryWriter bwProcess = new BinaryWriter(outFileProcess, System.Text.Encoding.UTF8);
 
             //写文件头
@@ -115,17 +111,13 @@ namespace bus_rode.Kernel.Tools {
         /// <param name="outFileFolder">输出文件所在的文件夹，需要加\</param>
         /// <param name="fileVersion">需要验证的build版本号</param>
         /// <returns></returns>
-        public bool Decompress(object filePath, object outFileFolder, long fileVersion) {
-            //转换
-            string _filePath, _outFileFolder;
-            _filePath = (string)filePath;
-            _outFileFolder = (string)outFileFolder;
+        public bool Decompress(string filePath, string outFileFolder, long fileVersion) {
 
             //检测
-            if (File.Exists(_filePath) == false) { return false; }
+            if (File.Exists(filePath) == false) { return false; }
 
             //开始读取
-            FileStream intoFile = new FileStream(_filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            FileStream intoFile = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             BinaryReader br = new BinaryReader(intoFile, System.Text.Encoding.UTF8);
             FileStream outFile;
             BinaryWriter bw;
@@ -153,7 +145,7 @@ namespace bus_rode.Kernel.Tools {
             }
 
             //============确认无误后可以写入===============
-            SetFolder(_outFileFolder);
+            SetFolder(outFileFolder);
 
             //读入区块
             for (int a = 0; a < fileArray.Length; a++) { fileCountList.Add(br.ReadInt64()); }
@@ -165,7 +157,7 @@ namespace bus_rode.Kernel.Tools {
                 if ((Int64)fileCountList[a] == 0) { continue; }
 
                 //打开文件
-                outFile = new FileStream(_outFileFolder + fileArray[a], FileMode.Create, FileAccess.Write, FileShare.Write);
+                outFile = new FileStream(outFileFolder + fileArray[a], FileMode.Create, FileAccess.Write, FileShare.Write);
                 bw = new BinaryWriter(outFile, System.Text.Encoding.UTF8);
 
                 //=================================计算读取次数
