@@ -157,7 +157,7 @@
                     </materialDesign:Card>
 
                     <!-- detail-->
-                    <StackPanel x:Name="uiDataDetail" Orientation="Vertical" VerticalAlignment="Top" Margin="5,10,5,10">
+                    <StackPanel x:Name="uiDataDetail" Visibility="Collapsed" Orientation="Vertical" VerticalAlignment="Top" Margin="5,10,5,10">
 
                         <materialDesign:Card Margin="0,5,0,5">
                             <Grid>

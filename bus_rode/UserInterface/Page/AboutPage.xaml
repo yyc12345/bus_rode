@@ -18,7 +18,7 @@
             <Grid.Effect>
                 <DropShadowEffect Opacity="0.5" ShadowDepth="2" Direction="270" BlurRadius="10"/>
             </Grid.Effect>
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="56"/>
                 <ColumnDefinition Width="auto"/>
@@ -33,8 +33,22 @@
 
         </Grid>
 
-        <TextBlock Foreground="White" FontSize="16" Text="" Grid.Row="1" Margin="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <ScrollViewer Grid.Row="1" Margin="16">
+            
+            <StackPanel Orientation="Vertical">
+
+                <TextBlock Foreground="White" FontSize="16" Text="" TextWrapping="Wrap"/>
+
+                <TextBlock Foreground="White" FontSize="16" Text="" Margin="0,20,0,20" TextWrapping="Wrap"/>
+
+                <TextBlock Foreground="White" FontSize="16" Text="" TextWrapping="Wrap"/>
+                <TextBlock Foreground="White" FontSize="16" Text="" TextWrapping="Wrap"/>
+            </StackPanel>
+            
+        </ScrollViewer>
+
+
 
     </Grid>
-    
+
 </UserControl>

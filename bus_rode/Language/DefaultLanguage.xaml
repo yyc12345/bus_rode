@@ -64,6 +64,12 @@
     <!-- about page-->
     <sys:String x:Key="langUIAboutPageTitle">关于</sys:String>
 
+    <!-- stop page-->
+    <sys:String x:Key="langUIStopPageTitle">车站</sys:String>
+
+    <sys:String x:Key="langUIStopPageCrossLine">经过车次：</sys:String>
+    <sys:String x:Key="langUIStopPageSwitchStop">切换车站</sys:String>
+    <sys:String x:Key="langUIStopPageGuide">换乘向导</sys:String>
 
     <!-- the area of code
     the key head of this area's resources is: langCode-->

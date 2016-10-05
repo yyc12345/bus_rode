@@ -23,7 +23,11 @@ This is a convenient application which can monitor bus and show city's public tr
 
 *TIPS:*  
 * You must have a local bus resource or a dll that can get the bus and stop information to test this application.  
-* The kernel is separated from the user interface. So you can use this kernel to develop some application that are ran in the different platform, but I never promise the thing that all of this kernel's sentences can be compiled normally.\(I never have some encourge to develop a cross-platform application, but you can do it.\)  
+* The kernel is separated from the user interface. So you can use this kernel to develop some application that are ran in the different platform, but I never promise the thing that all of this kernel's sentences can be compiled normally.\(I never have some encourge to develop a cross-platform application, but you can do it.\) Here are some points which avoid the cross-platform development.  
+	* ResourcesFileCompression is depend on the format of windows file path  
+	* All of reflection class is depend on the System.Reflection. This namespace is not exist in .Net Core perhaps  
+* You must observe the LICENSE in the application which you fork this solution and continue developing, and the application's soure code and release file must include the LICENSE.  
+* If you have some problem on reading code. Don't worried. Because my solution is messy. Please calm down and completely read.  
 
 ---
 #### Recent plan  
