@@ -58,13 +58,16 @@
 
         </Grid>
 
+        <!-- bk color-->
+        <Grid Background="{DynamicResource PrimaryHueMidBrush}" Grid.Row="1" Grid.RowSpan="2"/>
+
         <!-- big title-->
-        <Grid Grid.Row="1" Background="{DynamicResource PrimaryHueMidBrush}">
+        <Grid Grid.Row="1">
             <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,16,0,16" FontSize="24" Text="6路" VerticalAlignment="Center"/>
         </Grid>
 
         <!-- detail-->
-        <StackPanel Grid.Row="2" Orientation="Vertical" Background="{DynamicResource PrimaryHueMidBrush}" Margin="0,-1,0,0" 
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0,-1,0,0" 
                     Height="{Binding ElementName=uiMainListScrollViewer,Path=ContentVerticalOffset,Converter={StaticResource sliderMessageGridHeight}}"
                     Opacity="{Binding ElementName=uiMainListScrollViewer,Path=ContentVerticalOffset,Converter={StaticResource sliderMessageGridOpacity}}">
 
@@ -108,7 +111,7 @@
 
             <!-- 主容器-->
             <ScrollViewer x:Name="uiMainListScrollViewer" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
-                <!-- 内容-->
+                <!-- 内容 -17是减去滚动条-->
                 <Grid HorizontalAlignment="Center" Width="{Binding ElementName=uiLinePageBackground,Path=ActualWidth,Converter={StaticResource middleListWidthConverter}}" Margin="0,0,-17,0">
 
                     <!-- stop-->

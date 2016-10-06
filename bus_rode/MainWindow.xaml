@@ -45,8 +45,8 @@
         </Grid>
 
         <!-- 主控件区域-->
-        <uiPage:LinePage/>
-        
+        <uiPage:StopPage/>
+
         <!-- 左下通知区-->
         <materialDesign:Chip x:Name="uiNotificationBk" HorizontalAlignment="Left" VerticalAlignment="Bottom" Opacity="0.7" Margin="5,0,0,5" Visibility="Collapsed">
             <TextBlock x:Name="uiNotificationText" FontSize="14" Text=""/>

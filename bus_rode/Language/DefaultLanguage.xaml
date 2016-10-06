@@ -71,10 +71,21 @@
     <sys:String x:Key="langUIStopPageSwitchStop">切换车站</sys:String>
     <sys:String x:Key="langUIStopPageGuide">换乘向导</sys:String>
 
+    <sys:String x:Key="langUIStopPageTabNearbyStops">附近站台</sys:String>
+    <sys:String x:Key="langUIStopPageTabNearbyBuses">进站车次</sys:String>
+
+    <sys:String x:Key="langUIStopPageStopListItem">经过车次：</sys:String>
+
     <!-- the area of code
     the key head of this area's resources is: langCode-->
 
     <!-- line page-->
     <sys:String x:Key="langCodeLinePageStopItemRuntime">此站有{0}辆车</sys:String>
 
+    <!-- stop page-->
+    <sys:String x:Key="langCodeStopPageLineItemFirstNothing">没有最近的车</sys:String>
+    <sys:String x:Key="langCodeStopPageLineItemFirstExistence">最近的车还有{0}站</sys:String>
+    <sys:String x:Key="langCodeStopPageLineItemSecoundNothing">没有第二近的车</sys:String>
+    <sys:String x:Key="langCodeStopPageLineItemSecoundExistence">第二近的车还有{0}站</sys:String>
+    
 </ResourceDictionary>

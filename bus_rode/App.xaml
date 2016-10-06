@@ -39,7 +39,8 @@
                     <SolidColorBrush x:Key="AccentHueDarkForegroundBrush" Color="{DynamicResource Accent700Foreground}"/>
 
                     <!-- 字体请绑定{DynamicResource MaterialDesignBody}或者顶级元素TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-                    Card背景绑定{DynamicResource MaterialDesignPaper} 普通背景绑定{DynamicResource MaterialDesignBackground}-->
+                    Card背景绑定{DynamicResource MaterialDesignPaper} 普通背景绑定{DynamicResource MaterialDesignBackground}
+                    其余需要使用悬浮action模式按钮的请绑定{DynamicResource AccentHueDarkBrush}-->
                 
                 </ResourceDictionary>
 
