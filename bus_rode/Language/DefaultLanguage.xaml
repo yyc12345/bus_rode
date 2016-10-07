@@ -75,6 +75,30 @@
     <sys:String x:Key="langUIStopPageTabNearbyBuses">进站车次</sys:String>
 
     <sys:String x:Key="langUIStopPageStopListItem">经过车次：</sys:String>
+    
+    <!-- switch stop -->
+    <sys:String x:Key="langUISwitchStopPageTitle">切换车站</sys:String>
+
+    <sys:String x:Key="langUISwitchStopPageFilter">筛选器</sys:String>
+    <sys:String x:Key="langUISwitchStopPageFilterRemove">删除筛选器</sys:String>
+
+    <sys:String x:Key="langUISwitchStopPageFilterOr">或</sys:String>
+    <sys:String x:Key="langUISwitchStopPageFilterAnd">且</sys:String>
+    <sys:String x:Key="langUISwitchStopPageFilterBracket">括号</sys:String>
+
+    <sys:String x:Key="langUISwitchStopPageTextboxWaterMark">输入你要搜索的车站</sys:String>
+
+    <!-- switch line -->
+    <sys:String x:Key="langUISwitchLinePageTitle">切换线路</sys:String>
+
+    <sys:String x:Key="langUISwitchLinePageFilter">筛选器</sys:String>
+    <sys:String x:Key="langUISwitchLinePageFilterRemove">删除筛选器</sys:String>
+
+    <sys:String x:Key="langUISwitchLinePageFilterOr">或</sys:String>
+    <sys:String x:Key="langUISwitchLinePageFilterAnd">且</sys:String>
+    <sys:String x:Key="langUISwitchLinePageFilterBracket">括号</sys:String>
+
+    <sys:String x:Key="langUISwitchLinePageTextboxWaterMark">输入你要搜索的线路</sys:String>
 
     <!-- the area of code
     the key head of this area's resources is: langCode-->

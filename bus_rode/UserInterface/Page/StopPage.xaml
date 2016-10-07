@@ -98,6 +98,7 @@
             </StackPanel>
         </Grid>
 
+        <!-- progressbar -1是为了消除间隙-->
         <ProgressBar Visibility="Collapsed" Grid.Row="3" BorderThickness="0" IsIndeterminate="True" Background="#00000000" BorderBrush="#00000000" Margin="0,-1,0,0"/>
 
         <Grid Grid.Row="4">

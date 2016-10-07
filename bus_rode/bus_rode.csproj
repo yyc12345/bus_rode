@@ -118,6 +118,12 @@
     <Compile Include="UserInterface\Page\StopPage.xaml.cs">
       <DependentUpon>StopPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserInterface\Page\SwitchLinePage.xaml.cs">
+      <DependentUpon>SwitchLinePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Page\SwitchStopPage.xaml.cs">
+      <DependentUpon>SwitchStopPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\UserControl\LinePageBusPreview.xaml.cs">
       <DependentUpon>LinePageBusPreview.xaml</DependentUpon>
     </Compile>
@@ -185,6 +191,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserInterface\Page\StopPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Page\SwitchLinePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Page\SwitchStopPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

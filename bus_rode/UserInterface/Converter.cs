@@ -176,6 +176,26 @@ namespace bus_rode.UserInterface.Converter {
         }
     }
 
+    /// <summary>
+    /// 水印转换器
+    /// </summary>
+    [ValueConversion(typeof(bool), typeof(Visibility))]
+    public class WaterMarkVisibility : IValueConverter {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
+            if (value == null) { return Visibility.Hidden; }
+
+            bool isEmpty = System.Convert.ToBoolean(value);
+            if (isEmpty) return Visibility.Visible;
+            else return Visibility.Collapsed;
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
+            return null;
+        }
+    }
+
 
     /// <summary>
     /// SettingPageSliderItem滑动条的绑定转换器
