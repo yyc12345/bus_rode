@@ -1,0 +1,285 @@
+﻿<UserControl x:Class="bus_rode.UserInterface.Page.GuidePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:bus_rode.UserInterface.Page"
+             xmlns:uiControl="clr-namespace:bus_rode.UserInterface.UserControl"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converter="clr-namespace:bus_rode.UserInterface.Converter"
+             mc:Ignorable="d" TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             d:DesignHeight="600" d:DesignWidth="800" FontFamily="Microsoft YaHei UI Light">
+
+    <Grid x:Name="uiGuidePageBackground">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MaxWidth="400" MinWidth="150"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- head-->
+        <Grid Grid.Row="0" Background="{DynamicResource PrimaryHueDarkBrush}" Grid.ColumnSpan="2">
+            <!-- 特效-->
+            <Grid.Effect>
+                <DropShadowEffect Opacity="0.5" ShadowDepth="2" Direction="270" BlurRadius="10"/>
+            </Grid.Effect>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="56"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Background="#00000000" BorderThickness="0" Height="56">
+                <materialDesign:PackIcon Kind="ArrowLeft" Height="32" Width="32" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+            </Button>
+
+            <TextBlock Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Grid.Column="1" FontSize="24" Text="{DynamicResource langUIGuidePageTitle}" VerticalAlignment="Center"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="3" Height="56">
+                <Button Background="#00000000" BorderThickness="0" Height="56" ToolTipService.Placement="Bottom" ToolTip="{DynamicResource langUIGuidePageOpenedByBrowser}">
+                    <materialDesign:PackIcon Kind="Web" Height="32" Width="32" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+                </Button>
+            </StackPanel>
+
+        </Grid>
+
+        <!-- inputbox-->
+        <materialDesign:Card Grid.Column="0" Grid.Row="1" VerticalAlignment="Stretch" Margin="5">
+            <Grid>
+
+                <!-- start guide-->
+                <Grid>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel Orientation="Vertical" Margin="8">
+
+                            <!-- origin and destination-->
+                            <TextBlock Text="{DynamicResource langUIGuidePageOrigin}" FontSize="16"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBox Text="" FontSize="14"/>
+                                <materialDesign:PackIcon Grid.Column="1" Kind="CrosshairsGps" Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+                                <Button Background="#00000000" BorderThickness="0" Grid.Column="1" Height="30" ToolTipService.Placement="Bottom" ToolTip="{DynamicResource langUIGuidePageGPS}">
+                                   
+                                </Button>
+                            </Grid>
+
+                            <TextBlock Text="{DynamicResource langUIGuidePageDestination}" FontSize="16" Margin="0,16,0,0"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox Text="" FontSize="14"/>
+                                <materialDesign:PackIcon Grid.Column="1" Kind="CrosshairsGps" Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+                                <Button Background="#00000000" BorderThickness="0" Grid.Column="1" Height="30" ToolTipService.Placement="Bottom" ToolTip="{DynamicResource langUIGuidePageGPS}">
+
+                                </Button>
+                            </Grid>
+
+                            <!-- mode-->
+                            <TextBlock Text="{DynamicResource langUIGuidePageMode}" FontSize="16" Margin="0,16,0,0"/>
+                            <TextBlock FontSize="14" Opacity="0.5" Text="{DynamicResource langUIGuidePageModeDescription}" TextWrapping="Wrap"/>
+                            <ComboBox SelectedIndex="0">
+                                <ComboBoxItem Content="{DynamicResource langUIGuidePageModeAuto}"/>
+                                <ComboBoxItem Content="{DynamicResource langUIGuidePageModeLocal}"/>
+                                <ComboBoxItem Content="{DynamicResource langUIGuidePageModeGoogle}"/>
+                                <ComboBoxItem Content="{DynamicResource langUIGuidePageModeBing}"/>
+                            </ComboBox>
+                            
+                            <!-- time-->
+                            <TextBlock Text="{DynamicResource langUIGuidePageGuideDate}" FontSize="16" Margin="0,16,0,0"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="" VerticalAlignment="Center" FontSize="14"/>
+                                <materialDesign:PackIcon Grid.Column="1" Kind="Clock" Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+                                <Button Background="#00000000" BorderThickness="0" Grid.Column="1" Height="30" ToolTipService.Placement="Bottom" ToolTip="{DynamicResource langUIGuidePageGuideDateNow}">
+
+                                </Button>
+                            </Grid>
+
+                            <Button Margin="0,16,0,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Grid.Column="1" Kind="Directions" Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+                                    <TextBlock FontSize="14" VerticalAlignment="Center" Text="{DynamicResource langUIGuidePageGuiding}" Margin="8,0,0,0"/>
+                                </StackPanel>
+                            </Button>
+                            
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+
+                <!-- solution-->
+                <Grid Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- back button-->
+                    <Grid Grid.Row="1">
+                        <Button Background="#00000000" BorderThickness="0" Height="30"/>
+                        <StackPanel Orientation="Horizontal" Height="30">
+                            <Grid VerticalAlignment="Center" Width="30">
+                                <materialDesign:PackIcon Kind="ChevronLeft" Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Grid>
+                            <TextBlock FontSize="14" VerticalAlignment="Center"
+                                               Text="{DynamicResource langUIGuidePageBackToStart}" FontFamily="Microsoft YaHei UI"/>
+
+                        </StackPanel>
+                    </Grid>
+
+                    <ListBox Background="#00000000" BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="50" Margin="8,16,8,16">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- plan title-->
+                                    <TextBlock Grid.Row="0" VerticalAlignment="Center" FontSize="20" Text="{Binding SolutionTitle}"/>
+                                    <!-- plan duration-->
+                                    <TextBlock Grid.Row="1" VerticalAlignment="Center" FontSize="16" Text="{Binding SolutionDuration}" Opacity="0.5" HorizontalAlignment="Left"/>
+                                    <!-- plan distance-->
+                                    <TextBlock Grid.Row="1" VerticalAlignment="Center" FontSize="16" Text="{Binding SolutionDistance}" Opacity="0.5" HorizontalAlignment="Right"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+
+                <!-- result-->
+                <Grid Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- back button-->
+                    <Grid Grid.Row="1">
+                        <Button Background="#00000000" BorderThickness="0" Height="30"/>
+                        <StackPanel Orientation="Horizontal" Height="30">
+                            <Grid VerticalAlignment="Center" Width="30">
+                                <materialDesign:PackIcon Kind="ChevronLeft" Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Grid>
+                            <TextBlock FontSize="14" VerticalAlignment="Center"
+                                               Text="{DynamicResource langUIGuidePageBackToSolution}" FontFamily="Microsoft YaHei UI"/>
+
+                        </StackPanel>
+                    </Grid>
+
+                    <ListBox Background="#00000000" BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+
+                                <!-- 模板注释：
+                                如果是过程模式，请激活除站点圆 和 过程的packicon以外所有控件，将高度设置为150
+                                如果是站点模式，请只激活文本区段的标题 和 站点圆圈 和 到达时间文本，高度设置为30，margin设置为0,-1,0,-10 Panel.ZIndex设置为1（其他状况下为0）-->
+                                <Grid Height="{Binding GuideItemHeight}" Panel.ZIndex="{Binding GuideItemZIndex}" Margin="{Binding GuideItemMargin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- travel mode-->
+                                    <materialDesign:PackIcon Visibility="{Binding GuideItemIconShow}" Kind="{Binding GuideItemIcon}" Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    <!-- arrive time-->
+                                    <TextBlock Text="{Binding GuideItemArriveDate}" Visibility="{Binding GuideItemArriveDateShow}" Opacity="0.5" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                    <!-- stop ellipse-->
+                                    <Grid Grid.Column="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="5"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="20"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Rectangle Visibility="{Binding GuideItemLineShow}" Stroke="#00000000" Fill="{DynamicResource AccentHueDarkBrush}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3"/>
+
+                                        <Ellipse Visibility="{Binding GuideItemStopCircleShow}" Fill="{DynamicResource MaterialDesignPaper}" Stroke="{DynamicResource PrimaryHueMidBrush}" StrokeThickness="5" Width="20" Height="20"
+                                         VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="3"/>
+
+                                    </Grid>
+
+                                    <!-- name-->
+                                    <Grid Grid.Column="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Text="{Binding GuideItemTitle}" FontSize="20" Grid.Row="1"/>
+                                        <TextBlock Text="{Binding GuideItemProcess}" Visibility="{Binding GuideItemProcessShow}" Opacity="0.5" FontSize="14" Grid.Row="2" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding GuideItemRuntime}" Visibility="{Binding GuideItemRuntimeShow}" Opacity="0.5" FontSize="14" Grid.Row="3" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding GuideItemWebMessage}" Visibility="{Binding GuideItemWebMessageShow}" Opacity="0.5" FontSize="14" Grid.Row="4" TextWrapping="Wrap"/>
+                                    </Grid>
+
+                                </Grid>
+
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                </Grid>
+
+            </Grid>
+        </materialDesign:Card>
+        
+        <!-- apply stop-->
+        <materialDesign:Card Width="200" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5">
+            <StackPanel Orientation="Vertical" Margin="8">
+                <TextBlock FontSize="16" Text="{DynamicResource langUIGuidePageStopAdd}"/>
+                <TextBlock FontSize="16" Text="" Opacity="0.5" Margin="0,8,0,0"/>
+                <Button Content="{DynamicResource langUIGuidePageStopAddToOrigin}" Margin="0,32,0,0"/>
+                <Button Content="{DynamicResource langUIGuidePageStopAddToDestination}" Margin="0,8,0,0"/>
+                <Button Content="{DynamicResource langUIGuidePageStopAddDoNothing}" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="0,8,0,0"/>
+            </StackPanel>
+        </materialDesign:Card>
+        
+        <!-- no map info-->
+        <Grid Width="300" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Opacity="0.5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <materialDesign:PackIcon Kind="ServerRemove" Height="50" Width="50" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+            <TextBlock FontSize="16" Grid.Row="1" TextWrapping="Wrap" Text="{DynamicResource langUIGuidePageNoServer}"/>
+        </Grid>
+        
+        <!-- water mark-->
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Opacity="0.5">
+            <TextBlock FontSize="14" Text="Powered by:" VerticalAlignment="Center"/>
+            <materialDesign:PackIcon Kind="GoogleMaps" Height="25" Width="25" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+            <TextBlock FontSize="14" Text="Google Map" VerticalAlignment="Center"/>
+            <materialDesign:PackIcon Kind="Bing" Height="25" Width="25" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Margin="8,0,0,0"/>
+            <TextBlock FontSize="14" Text="Bing Map" VerticalAlignment="Center"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

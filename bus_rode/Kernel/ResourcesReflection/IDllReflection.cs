@@ -8,8 +8,8 @@ using System.Reflection;
 namespace bus_rode.Kernel.ResourcesReflection {
     public interface IDllReflection {
 
-        void Initialize();
-        void ReadLoop();
+        //void Initialize();
+        //void ReadLoop();
 
     }
 }

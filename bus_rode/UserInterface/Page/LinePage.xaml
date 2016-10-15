@@ -16,6 +16,8 @@
 
         <converter:SliderMessageGridOpacity x:Key="sliderMessageGridOpacity"/>
         <converter:SliderMessageGridHeight x:Key="sliderMessageGridHeight"/>
+
+        <converter:WaterMarkVisibility x:Key="waterMarkVisibility"/>
     </UserControl.Resources>
 
     <Grid x:Name="uiLinePageBackground">
@@ -54,6 +56,19 @@
                 <Button Background="#00000000" BorderThickness="0" Height="56" ToolTipService.Placement="Bottom" ToolTip="{DynamicResource langUILinePageSearchStopInLine}">
                     <materialDesign:PackIcon Kind="Magnify" Height="32" Width="32" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
                 </Button>
+                <!-- search box-->
+                <Grid VerticalAlignment="Center" Width="200" Margin="0,0,24,0">
+                    <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Opacity="0.5"  Grid.Row="1" FontSize="16"
+                            Text="{DynamicResource langUILinePageSearchStopInLineWaterMark}" VerticalAlignment="Center"
+                            Visibility="{Binding ElementName=uiFilterText,Path=Text.IsEmpty,Converter={StaticResource waterMarkVisibility} }" RenderTransformOrigin="0.5,0.5">
+                        <TextBlock.RenderTransform>
+                            <SkewTransform AngleX="-30" CenterX="0" CenterY="0"/>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <TextBox x:Name="uiFilterText" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Grid.Row="1" FontSize="16"
+                            Text="" VerticalAlignment="Center"/>
+
+                </Grid>
             </StackPanel>
 
         </Grid>
@@ -72,10 +87,10 @@
                     Opacity="{Binding ElementName=uiMainListScrollViewer,Path=ContentVerticalOffset,Converter={StaticResource sliderMessageGridOpacity}}">
 
             <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,4,0,4" Grid.Column="1" FontSize="16" Text="message 1"/>
-            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,4,0,4" Grid.Column="1" FontSize="16" Text="message 1"/>
-            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,4,0,4" Grid.Column="1" FontSize="16" Text="message 1"/>
-            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,4,0,4" Grid.Column="1" FontSize="16" Text="message 1"/>
-            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,4,0,14" Grid.Column="1" FontSize="16" Text="message 1"/>
+            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,4,0,4" Grid.Column="1" FontSize="16" Text="message 2"/>
+            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,4,0,4" Grid.Column="1" FontSize="16" Text="message 3"/>
+            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,4,0,4" Grid.Column="1" FontSize="16" Text="message 4"/>
+            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,4,0,14" Grid.Column="1" FontSize="16" Text="message 5"/>
 
         </StackPanel>
 

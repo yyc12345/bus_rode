@@ -45,7 +45,7 @@
         </Grid>
 
         <!-- 主控件区域-->
-        <uiPage:SwitchLinePage/>
+        <uiPage:GuidePage/>
 
         <!-- 左下通知区-->
         <materialDesign:Chip x:Name="uiNotificationBk" HorizontalAlignment="Left" VerticalAlignment="Bottom" Opacity="0.7" Margin="5,0,0,5" Visibility="Collapsed">

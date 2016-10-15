@@ -22,6 +22,8 @@
     <sys:String x:Key="langUILinePageItemDataRuntime">实时数据</sys:String>
     <sys:String x:Key="langUILinePageItemDataSubwayExit">地铁站出口</sys:String>
 
+    <sys:String x:Key="langUILinePageSearchStopInLineWaterMark">输入要搜索的线路内车站</sys:String>
+
     <!-- settings page-->
     <sys:String x:Key="langUISettingsPageTitle">设置</sys:String>
 
@@ -76,29 +78,43 @@
 
     <sys:String x:Key="langUIStopPageStopListItem">经过车次：</sys:String>
     
-    <!-- switch stop -->
+    <!-- switch stop page-->
     <sys:String x:Key="langUISwitchStopPageTitle">切换车站</sys:String>
-
-    <sys:String x:Key="langUISwitchStopPageFilter">筛选器</sys:String>
-    <sys:String x:Key="langUISwitchStopPageFilterRemove">删除筛选器</sys:String>
-
-    <sys:String x:Key="langUISwitchStopPageFilterOr">或</sys:String>
-    <sys:String x:Key="langUISwitchStopPageFilterAnd">且</sys:String>
-    <sys:String x:Key="langUISwitchStopPageFilterBracket">括号</sys:String>
 
     <sys:String x:Key="langUISwitchStopPageTextboxWaterMark">输入你要搜索的车站</sys:String>
 
-    <!-- switch line -->
+    <!-- switch line page-->
     <sys:String x:Key="langUISwitchLinePageTitle">切换线路</sys:String>
 
-    <sys:String x:Key="langUISwitchLinePageFilter">筛选器</sys:String>
-    <sys:String x:Key="langUISwitchLinePageFilterRemove">删除筛选器</sys:String>
-
-    <sys:String x:Key="langUISwitchLinePageFilterOr">或</sys:String>
-    <sys:String x:Key="langUISwitchLinePageFilterAnd">且</sys:String>
-    <sys:String x:Key="langUISwitchLinePageFilterBracket">括号</sys:String>
-
     <sys:String x:Key="langUISwitchLinePageTextboxWaterMark">输入你要搜索的线路</sys:String>
+
+    <!-- guide page -->
+    <sys:String x:Key="langUIGuidePageTitle">换乘向导</sys:String>
+
+    <sys:String x:Key="langUIGuidePageOpenedByBrowser">在浏览器中打开</sys:String>
+
+    <sys:String x:Key="langUIGuidePageBackToStart">返回至查找换乘</sys:String>
+    <sys:String x:Key="langUIGuidePageBackToSolution">返回至换乘方案</sys:String>
+
+    <sys:String x:Key="langUIGuidePageOrigin">起点</sys:String>
+    <sys:String x:Key="langUIGuidePageDestination">终点</sys:String>
+    <sys:String x:Key="langUIGuidePageGPS">使用我现在的位置</sys:String>
+    <sys:String x:Key="langUIGuidePageMode">向导源</sys:String>
+    <sys:String x:Key="langUIGuidePageModeDescription">向导源是用来搜索向导的方式，默认为自动选择，即当网络欠佳时使用本地源，网络遭到封锁时使用Bing Map，网络完全开放时使用Google Map。建议保持自动，想要获得最佳效果请使用Google Map</sys:String>
+    <sys:String x:Key="langUIGuidePageModeAuto">自动选择源</sys:String>
+    <sys:String x:Key="langUIGuidePageModeLocal">使用本地源</sys:String>
+    <sys:String x:Key="langUIGuidePageModeGoogle">使用Google Map</sys:String>
+    <sys:String x:Key="langUIGuidePageModeBing">使用Bing Map</sys:String>
+    <sys:String x:Key="langUIGuidePageGuideDate">出发时间</sys:String>
+    <sys:String x:Key="langUIGuidePageGuideDateNow">使用现在此计算机现在的时间</sys:String>
+    <sys:String x:Key="langUIGuidePageGuiding">开始搜寻向导</sys:String>
+
+    <sys:String x:Key="langUIGuidePageStopAdd">当前选中的车站</sys:String>
+    <sys:String x:Key="langUIGuidePageStopAddToOrigin">添加至起点</sys:String>
+    <sys:String x:Key="langUIGuidePageStopAddToDestination">添加至终点</sys:String>
+    <sys:String x:Key="langUIGuidePageStopAddDoNothing">不添加</sys:String>
+
+    <sys:String x:Key="langUIGuidePageNoServer">当前选择的向导源无法提供地图或者由于网络故障无法显示地图</sys:String>
 
     <!-- the area of code
     the key head of this area's resources is: langCode-->
