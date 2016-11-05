@@ -74,7 +74,7 @@
     <Compile Include="Kernel\FileIO\Conversion\BusConvertToSubway.cs" />
     <Compile Include="Kernel\FileIO\FileBlockStruct\LineFileBlockStruct.cs" />
     <Compile Include="Kernel\FileIO\FileBlockStruct\GuideLineFileBlockStruct.cs" />
-    <Compile Include="Kernel\FileIO\FileBlockStruct\HaveBusFileBlockStruct.cs" />
+    <Compile Include="Kernel\FileIO\FileBlockStruct\HaveLineFileBlockStruct.cs" />
     <Compile Include="Kernel\FileIO\FileBlockStruct\ReadmeFileBlockStruct.cs" />
     <Compile Include="Kernel\FileIO\FileBlockStruct\StopFileBlockStruct.cs" />
     <Compile Include="Kernel\FileIO\FileBlockStruct\SubwayFileBlockStruct.cs" />
@@ -95,7 +95,6 @@
     <Compile Include="Kernel\Management\UserInterfaceBlockStruct\LinePageSubwayBlockStruct.cs" />
     <Compile Include="Kernel\Network\AutoTranslate.cs" />
     <Compile Include="Kernel\Network\GuideWeb.cs" />
-    <Compile Include="Kernel\ResourcesReflection\IDllReflection.cs" />
     <Compile Include="Kernel\ResourcesReflection\MonitorDllReflection.cs" />
     <Compile Include="Kernel\ResourcesReflection\ResourcesDllReflection.cs" />
     <Compile Include="Kernel\Tools\Information.cs" />

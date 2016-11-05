@@ -217,7 +217,7 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <materialDesign:PackIcon Kind="Bus" Height="24" Width="24" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                                <TextBlock FontSize="12" Text="{Binding ID}" Grid.Column="1" VerticalAlignment="Center"/>
+                                                <TextBlock FontSize="12" Text="{Binding ID}" Grid.Column="1" VerticalAlignment="Center" ToolTip="{Binding Description}"/>
                                             </Grid>
 
                                         </DataTemplate>

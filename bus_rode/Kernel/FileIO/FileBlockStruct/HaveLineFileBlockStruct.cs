@@ -8,11 +8,11 @@ using bus_rode.Kernel.Tools;
 namespace bus_rode.Kernel.FileIO.FileBlockStruct {
 
     /// <summary>
-    /// havebus结构，支持block/step读，step写
+    /// have line结构，支持block/step读，step写
     /// </summary>
-    public class HaveBusFileBlockStruct : FileIO.IFileBlockStruct {
+    public class HaveLineFileBlockStruct : FileIO.IFileBlockStruct {
 
-        public HaveBusFileBlockStruct() {
+        public HaveLineFileBlockStruct() {
             lineName = "";
         }
 

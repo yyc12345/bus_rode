@@ -48,13 +48,13 @@ namespace bus_rode.Kernel.Management {
         /// <summary>
         /// 用于读取支持的线路数据的读取器
         /// </summary>
-        private BlockReader<HaveBusFileBlockStruct> haveLineReader;
+        private BlockReader<HaveLineFileBlockStruct> haveLineReader;
 
         public LineManagement() {
             nowLine = new LineFileBlockStruct();
             supportingLines = new HashSet<string>();
             subwayReader = new SeekReader<SubwayFileBlockStruct>();
-            haveLineReader = new BlockReader<HaveBusFileBlockStruct>();
+            haveLineReader = new BlockReader<HaveLineFileBlockStruct>();
             lineReader = new SeekReader<LineFileBlockStruct>();
             nowSubwayStop = new HashSet<SubwayFileBlockStruct>();
         }
@@ -123,7 +123,7 @@ namespace bus_rode.Kernel.Management {
         /// </summary>
         /// <param name="order"></param>
         public bool UpdateSupportingList(enumListPageOrder order) {
-            List<HaveBusFileBlockStruct> result;
+            List<HaveLineFileBlockStruct> result;
 
             if (order== enumListPageOrder.Previous) {
                 result = haveLineReader.ReadPreviousBlock();

@@ -98,7 +98,8 @@
                             
                             <!-- time-->
                             <TextBlock Text="{DynamicResource langUIGuidePageGuideDate}" FontSize="16" Margin="0,16,0,0"/>
-                            <Grid>
+                            <materialDesign:TimePicker SelectedTimeFormat="Long" Is24Hours="True"/>
+                            <!--<Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="30"/>
@@ -109,7 +110,7 @@
                                 <Button Background="#00000000" BorderThickness="0" Grid.Column="1" Height="30" ToolTipService.Placement="Bottom" ToolTip="{DynamicResource langUIGuidePageGuideDateNow}">
 
                                 </Button>
-                            </Grid>
+                            </Grid>-->
 
                             <Button Margin="0,16,0,0">
                                 <StackPanel Orientation="Horizontal">
