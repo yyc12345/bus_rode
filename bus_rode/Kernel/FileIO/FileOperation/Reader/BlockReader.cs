@@ -64,7 +64,7 @@ namespace bus_rode.Kernel.FileIO.FileOperation.Reader {
             if (leftResumeBrokenManagement.Count == 0) { return new List<T>(); } //左栈为空，挂掉
             middleResumeBrokenManagement = leftResumeBrokenManagement.Pop();
             //设置
-            var fr = new FileStream(Environment.CurrentDirectory + filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            var fr = new FileStream(Kernel.Tools.SystemInformation.WorkingPath + filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             fr.Seek(middleResumeBrokenManagement, SeekOrigin.Begin);
             var blockReader = new StreamReader(fr, Assistance.utf8WithoutBOM);
 
@@ -125,7 +125,7 @@ write_stack:;
             leftResumeBrokenManagement.Pop();
             middleResumeBrokenManagement = leftResumeBrokenManagement.Pop();
             //设置
-            var fr = new FileStream(Environment.CurrentDirectory + filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            var fr = new FileStream(Kernel.Tools.SystemInformation.WorkingPath + filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             fr.Seek(middleResumeBrokenManagement, SeekOrigin.Begin);
             var blockReader = new StreamReader(fr, Assistance.utf8WithoutBOM);
 
@@ -184,7 +184,7 @@ write_stack:;
             //获取
             //直接按中栈设置
             //设置
-            var fr = new FileStream(Environment.CurrentDirectory + filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            var fr = new FileStream(Kernel.Tools.SystemInformation.WorkingPath + filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             fr.Seek(middleResumeBrokenManagement, SeekOrigin.Begin);
             var blockReader = new StreamReader(fr, Assistance.utf8WithoutBOM);
 

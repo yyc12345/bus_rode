@@ -32,7 +32,7 @@
                     <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{DynamicResource Primary700Foreground}"/>
 
                     <SolidColorBrush x:Key="AccentHueLightBrush" Color="{DynamicResource Accent200}"/>
-                    <SolidColorBrush x:Key="PAccentHueLightForegroundBrush" Color="{DynamicResource Accent200Foreground}"/>
+                    <SolidColorBrush x:Key="AccentHueLightForegroundBrush" Color="{DynamicResource Accent200Foreground}"/>
                     <SolidColorBrush x:Key="AccentHueMidBrush" Color="{DynamicResource Accent400}"/>
                     <SolidColorBrush x:Key="AccentHueMidForegroundBrush" Color="{DynamicResource Accent400Foreground}"/>
                     <SolidColorBrush x:Key="AccentHueDarkBrush" Color="{DynamicResource Accent700}"/>

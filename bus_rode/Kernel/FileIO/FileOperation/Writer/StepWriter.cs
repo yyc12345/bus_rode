@@ -37,7 +37,7 @@ namespace bus_rode.Kernel.FileIO.FileOperation.Writer {
         public void BeginToWrite() {
             if (stepWriterStatus == enumFileStatus.Empty) {
 
-                stepWriter = new StreamWriter(Environment.CurrentDirectory + filePath, false, Assistance.utf8WithoutBOM);
+                stepWriter = new StreamWriter(Kernel.Tools.SystemInformation.WorkingPath + filePath, false, Assistance.utf8WithoutBOM);
                 stepWriterStatus = enumFileStatus.Ready;
 
             } else {

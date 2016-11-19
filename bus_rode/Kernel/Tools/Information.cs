@@ -50,5 +50,13 @@ namespace bus_rode.Kernel.Tools
         /// 屏幕高
         /// </summary>
         public static double ScreenHeight { get { return System.Windows.SystemParameters.PrimaryScreenHeight; } }
+        /// <summary>
+        /// 工作路径
+        /// </summary>
+        public static string WorkingPath { get { return Environment.CurrentDirectory; } }
+        /// <summary>
+        /// 支持的语言（RFC 4646 标识符）
+        /// </summary>
+        public static string SupportedLanguages { get { return "en-US,zh-CN,ja-JP,de-DE,ru-RU"; } }
     }
 }

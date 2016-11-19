@@ -23,37 +23,7 @@ namespace bus_rode.UserInterface.UserControl {
         public SettingsPageSliderItem() {
             InitializeComponent();
 
-            //设置绑定
-            Binding bTitle = new Binding(), bDescription = new Binding();
-            bTitle.Mode = BindingMode.OneWay;
-            bDescription.Mode = BindingMode.OneWay;
-
-            bTitle.Source = this;
-            bTitle.Path = new PropertyPath("Title");
-            bDescription.Source = this;
-            bDescription.Path = new PropertyPath("Description");
-
-            this.uiTitle.SetBinding(TextBlock.TextProperty, bTitle);
-            this.uiDescription.SetBinding(TextBlock.TextProperty, bDescription);
-
-            //设置绑定
-            Binding bMax = new Binding(), bMin = new Binding(), bValue = new Binding();
-            bMax.Mode = BindingMode.TwoWay;
-            bMin.Mode = BindingMode.TwoWay;
-            bValue.Mode = BindingMode.TwoWay;
-
-            bMax.Source = this;
-            bMax.Path = new PropertyPath("Maximum");
-            bMin.Source = this;
-            bMin.Path = new PropertyPath("Minimum");
-            bValue.Source = this;
-            bValue.Path = new PropertyPath("Value");
-
-            this.uiSlider.SetBinding(Slider.MaximumProperty, bMax);
-            this.uiSlider.SetBinding(Slider.MinimumProperty, bMin);
-            this.uiSlider.SetBinding(Slider.ValueProperty, bValue);
-
-            //设置绑定
+            //绑定 数值文本和滑动条
             converterParam = "{0}";
             Binding bShowValue = new Binding();
             bShowValue.Mode = BindingMode.OneWay;
@@ -74,7 +44,11 @@ namespace bus_rode.UserInterface.UserControl {
         }
 
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("Title", typeof(string), typeof(SettingsPageSliderItem), new PropertyMetadata(""));
+            DependencyProperty.Register("Title", typeof(string), typeof(SettingsPageSliderItem),
+                        new PropertyMetadata("", new PropertyChangedCallback((DependencyObject d, DependencyPropertyChangedEventArgs e) => {
+                            SettingsPageSliderItem v = d as SettingsPageSliderItem;
+                            v.uiTitle.Text = e.NewValue.ToString();
+                        })));
 
         /// <summary>
         /// 描述
@@ -85,42 +59,66 @@ namespace bus_rode.UserInterface.UserControl {
         }
 
         public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.Register("Description", typeof(string), typeof(SettingsPageSliderItem), new PropertyMetadata(""));
+            DependencyProperty.Register("Description", typeof(string), typeof(SettingsPageSliderItem),
+                        new PropertyMetadata("", new PropertyChangedCallback((DependencyObject d, DependencyPropertyChangedEventArgs e) => {
+                            SettingsPageSliderItem v = d as SettingsPageSliderItem;
+                            v.uiDescription.Text = e.NewValue.ToString();
+                        })));
+
 
         /// <summary>
         /// 最大值
         /// </summary>
-        public int Maximum {
-            get { return (int)GetValue(MaximumProperty); }
-            set { SetValue(MaximumProperty, value); }
+        public double Maximum {
+            get { return uiSlider.Maximum; }
+            set { uiSlider.Maximum = value; }
         }
-
-        public static readonly DependencyProperty MaximumProperty =
-            DependencyProperty.Register("Maximum", typeof(int), typeof(SettingsPageSliderItem), new PropertyMetadata(1));
 
         /// <summary>
         /// 最小值
         /// </summary>
-        public int Minimum {
-            get { return (int)GetValue(MinimumProperty); }
-            set { SetValue(MinimumProperty, value); }
+        public double Minimum {
+            get { return uiSlider.Minimum; }
+            set { uiSlider.Minimum = value; }
         }
-
-        public static readonly DependencyProperty MinimumProperty =
-            DependencyProperty.Register("Minimum", typeof(int), typeof(SettingsPageSliderItem), new PropertyMetadata(0));
 
         /// <summary>
         /// 当前值
         /// </summary>
-        public int Value {
-            get { return (int)GetValue(ValueProperty); }
-            set { SetValue(ValueProperty, value); }
+        public double Value {
+            get { return uiSlider.Value; }
+            set {
+                FlagOfForcingToChange = true;
+                uiSlider.Value = value;
+            }
         }
 
-        public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(int), typeof(SettingsPageSliderItem), new PropertyMetadata(0));
 
+        /// <summary>
+        /// 强制改变数值的标志
+        /// </summary>
+        private bool FlagOfForcingToChange;
+        /// <summary>
+        /// 选项改变的事件
+        /// </summary>
+        public event Action DataChanged;
+        /// <summary>
+        /// 引发事件检查
+        /// </summary>
+        private void OnDataChanged() {
+            if (DataChanged != null) DataChanged();
+        }
 
+        private void fx_DataChange(object sender, RoutedPropertyChangedEventArgs<double> e) {
+            //judge flag
+            if (FlagOfForcingToChange == true) {
+                FlagOfForcingToChange = false;
+                return;
+
+            } else OnDataChanged();
+        }
+
+        #region 滚动条到文本框的转换
         /// <summary>
         /// 转换器参数
         /// </summary>
@@ -145,6 +143,8 @@ namespace bus_rode.UserInterface.UserControl {
             }
         }
 
+
+        #endregion
 
 
     }

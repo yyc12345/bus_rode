@@ -21,27 +21,6 @@ namespace bus_rode.UserInterface.UserControl {
     public partial class SettingsPageToggleButtonItem : System.Windows.Controls.UserControl {
         public SettingsPageToggleButtonItem() {
             InitializeComponent();
-
-            //设置绑定
-            Binding bTitle = new Binding(), bDescription = new Binding();
-            bTitle.Mode = BindingMode.OneWay;
-            bDescription.Mode = BindingMode.OneWay;
-
-            bTitle.Source = this;
-            bTitle.Path = new PropertyPath("Title");
-            bDescription.Source = this;
-            bDescription.Path = new PropertyPath("Description");
-
-            this.uiTitle.SetBinding(TextBlock.TextProperty, bTitle);
-            this.uiDescription.SetBinding(TextBlock.TextProperty, bDescription);
-
-            //设置绑定
-            Binding bIsChecked = new Binding();
-            bIsChecked.Mode = BindingMode.TwoWay;
-            bIsChecked.Source = this;
-            bIsChecked.Path = new PropertyPath("IsChecked");
-            this.uiToggleButton.SetBinding(System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty, bIsChecked);
-
         }
 
         /// <summary>
@@ -53,7 +32,11 @@ namespace bus_rode.UserInterface.UserControl {
         }
 
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("Title", typeof(string), typeof(SettingsPageToggleButtonItem), new PropertyMetadata(""));
+            DependencyProperty.Register("Title", typeof(string), typeof(SettingsPageToggleButtonItem),
+                        new PropertyMetadata("", new PropertyChangedCallback((DependencyObject d, DependencyPropertyChangedEventArgs e) => {
+                            SettingsPageToggleButtonItem v = d as SettingsPageToggleButtonItem;
+                            v.uiTitle.Text = e.NewValue.ToString();
+                        })));
 
         /// <summary>
         /// 描述
@@ -64,19 +47,47 @@ namespace bus_rode.UserInterface.UserControl {
         }
 
         public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.Register("Description", typeof(string), typeof(SettingsPageToggleButtonItem), new PropertyMetadata(""));
+            DependencyProperty.Register("Description", typeof(string), typeof(SettingsPageToggleButtonItem),
+                        new PropertyMetadata("", new PropertyChangedCallback((DependencyObject d, DependencyPropertyChangedEventArgs e) => {
+                            SettingsPageToggleButtonItem v = d as SettingsPageToggleButtonItem;
+                            v.uiDescription.Text = e.NewValue.ToString();
+                        })));
+
 
         /// <summary>
         /// 是否选中
         /// </summary>
         public bool? IsChecked {
-            get { return (bool?)GetValue(IsCheckedProperty); }
-            set { SetValue(IsCheckedProperty, value); }
+            get { return uiToggleButton.IsChecked; }
+            set {
+                FlagOfForcingToChange = true;
+                uiToggleButton.IsChecked = value;
+            }
         }
 
-        public static readonly DependencyProperty IsCheckedProperty =
-            DependencyProperty.Register("IsChecked", typeof(bool), typeof(SettingsPageToggleButtonItem), new PropertyMetadata(false));
+        /// <summary>
+        /// 强制改变数值的标志
+        /// </summary>
+        private bool FlagOfForcingToChange;
+        /// <summary>
+        /// 选项改变的事件
+        /// </summary>
+        public event Action DataChanged;
+        /// <summary>
+        /// 引发事件检查
+        /// </summary>
+        private void OnDataChanged() {
+            if (DataChanged != null) DataChanged();
+        }
 
+        private void fx_DataChange(object sender, RoutedEventArgs e) {
+            //judge flag
+            if (FlagOfForcingToChange == true) {
+                FlagOfForcingToChange = false;
+                return;
+
+            } else OnDataChanged();
+        }
 
     }
 }

@@ -67,10 +67,10 @@ namespace bus_rode.Kernel.Tools {
 
             //加载
             ResourceDictionary langResources = null;
-            if (System.IO.File.Exists(Environment.CurrentDirectory + @"\language\" + sign + ".xaml") == true) {
+            if (System.IO.File.Exists(Kernel.Tools.SystemInformation.WorkingPath + @"\language\" + sign + ".xaml") == true) {
                 try {
                     langResources = (ResourceDictionary)Application.LoadComponent(new Uri(@"language\" + sign + ".xaml", UriKind.Relative));
-                } catch (Exception ex) { }
+                } catch (Exception) { }
             }
 
             if (languageSign == null) {

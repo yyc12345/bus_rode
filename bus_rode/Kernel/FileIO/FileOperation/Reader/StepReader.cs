@@ -41,7 +41,7 @@ namespace bus_rode.Kernel.FileIO.FileOperation.Reader {
         /// </summary>
         public void BeginToStepRead() {
             if (stepReaderStatus != enumFileStatus.Ready) {
-                stepReader = new StreamReader(Environment.CurrentDirectory + filePath, Assistance.utf8WithoutBOM);
+                stepReader = new StreamReader(Kernel.Tools.SystemInformation.WorkingPath + filePath, Assistance.utf8WithoutBOM);
                 stepReaderStatus = enumFileStatus.Ready;
             } else {
                 throw new InvalidOperationException("Initialize failed!");

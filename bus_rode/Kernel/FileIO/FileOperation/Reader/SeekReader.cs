@@ -65,7 +65,7 @@ namespace bus_rode.Kernel.FileIO.FileOperation.Reader {
 
 
             //=======================================================读取序号
-            StreamReader indexReader = new StreamReader(Environment.CurrentDirectory + seekFilePath, Assistance.utf8WithoutBOM);
+            StreamReader indexReader = new StreamReader(Kernel.Tools.SystemInformation.WorkingPath + seekFilePath, Assistance.utf8WithoutBOM);
             string word = "";
 
             //读取循环
@@ -96,7 +96,7 @@ namespace bus_rode.Kernel.FileIO.FileOperation.Reader {
             indexReader.Dispose();
 
             //====================================================================================读取
-            var seekReader = new FileStream(Environment.CurrentDirectory + mainFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            var seekReader = new FileStream(Kernel.Tools.SystemInformation.WorkingPath + mainFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             //读取循环
             cache = -1;
             foreach (seekIndexStruct item in seekHead) {

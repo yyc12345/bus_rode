@@ -28,7 +28,7 @@ namespace bus_rode.Kernel.FileIO.FileOperation.Reader {
         public T ReadAll() {
 
             ArrayList getWords = new ArrayList();
-            StreamReader fr = new StreamReader(Environment.CurrentDirectory + filePath, Assistance.utf8WithoutBOM);
+            StreamReader fr = new StreamReader(Kernel.Tools.SystemInformation.WorkingPath + filePath, Assistance.utf8WithoutBOM);
             string word = "";
 
             //read while

@@ -11,10 +11,10 @@ namespace bus_rode.Kernel.ResourcesReflection {
 
         public ResourcesDllReflection() {
 
-            DllDisable = null;
+            DllState = enumDllReflectionState.Unknow;
             DllDependBusRodeVersion = "";
             DllGetTick = "";
-            DllRegoin = "";
+            DllRegion = "";
             DllVersion = "";
             DllWriter = "";
 
@@ -59,7 +59,7 @@ namespace bus_rode.Kernel.ResourcesReflection {
         /// <summary>
         /// null is unknow, true is disable, false is able
         /// </summary>
-        public bool? DllDisable;
+        public enumDllReflectionState DllState;
         /// <summary>
         /// 依赖版本
         /// </summary>
@@ -67,7 +67,7 @@ namespace bus_rode.Kernel.ResourcesReflection {
         /// <summary>
         /// 地址
         /// </summary>
-        public string DllRegoin;
+        public string DllRegion;
         /// <summary>
         /// 获取间隔
         /// </summary>

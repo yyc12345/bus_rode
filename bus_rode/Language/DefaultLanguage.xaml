@@ -32,6 +32,8 @@
     <sys:String x:Key="langUISettingsPageNormalPageSpeechDescription">帮助视力不佳的人朗读屏幕上的内容（在任意界面按下 F1 键以朗读）</sys:String>
     <sys:String x:Key="langUISettingsPageNormalPageAutoTranslateTitle">自动翻译</sys:String>
     <sys:String x:Key="langUISettingsPageNormalPageAutoTranslateDescription">当使用非显示语言资源的时候，自动转换资源文本为显示语言</sys:String>
+    <sys:String x:Key="langUISettingsPageNormalPageAutoDarkThemeTitle">自动设置暗色主题</sys:String>
+    <sys:String x:Key="langUISettingsPageNormalPageAutoDarkThemeDescription">每天晚上6:00至早晨6:00自动设置为暗色主题，其余情况下设置为亮色主题，关闭即保持亮色状态</sys:String>
     <sys:String x:Key="langUISettingsPageNormalPageLanguageTitle">语言</sys:String>
     <sys:String x:Key="langUISettingsPageNormalPageLanguageDescription">选择显示的语言</sys:String>
     <sys:String x:Key="langUISettingsPageNormalPageRestartTitle">重新启动应用程序</sys:String>
@@ -42,16 +44,18 @@
     <sys:String x:Key="langUISettingsPageRuntimePageMonitorDescription">对处在运营状态的车次到达站次显示在线路图上</sys:String>
     <sys:String x:Key="langUISettingsPageRuntimePageReplaceTitle">替换车辆跟踪插件</sys:String>
     <sys:String x:Key="langUISettingsPageRuntimePageReplaceDescription">车辆跟踪插件可以方便地安全地获取到你所在城市的实时公交信息并显示在bus_rode上，对于不同的城市，应选用不同的插件</sys:String>
-    <sys:String x:Key="langUISettingsPageRuntimePageDeleteTitle">删除插件</sys:String>
+    <sys:String x:Key="langUISettingsPageRuntimePageDeleteTitle">删除车辆跟踪插件</sys:String>
     <sys:String x:Key="langUISettingsPageRuntimePageDeleteDescription">删除当前加载的插件，使得bus_rode无法显示实时公交信息</sys:String>
-    <sys:String x:Key="langUISettingsPageRuntimePageInformationTitle">插件信息</sys:String>
+    <sys:String x:Key="langUISettingsPageRuntimePageInformationTitle">车辆跟踪插件信息</sys:String>
     <sys:String x:Key="langUISettingsPageRuntimePageInformationDescription">显示当前车辆跟踪插件的信息</sys:String>
 
     <sys:String x:Key="langUISettingsPageResourcesPageTitle">资源</sys:String>
     <sys:String x:Key="langUISettingsPageResourcesPageReplaceTitle">替换资源</sys:String>
-    <sys:String x:Key="langUISettingsPageResourcesPageReplaceDescription">替换加载的资源，便于切换到其他城市进行指引</sys:String>
+    <sys:String x:Key="langUISettingsPageResourcesPageReplaceDescription">替换加载的资源，便于切换到其他城市进行指引。你可以选择一个资源插件或者是本地资源包作为资源，但两者之中只能选择一个</sys:String>
     <sys:String x:Key="langUISettingsPageResourcesPageDeleteTitle">删除加载的资源</sys:String>
     <sys:String x:Key="langUISettingsPageResourcesPageDeleteDescription">删除当前加载的资源，则下一次启动，bus_rode将会以无资源模式启动</sys:String>
+    <sys:String x:Key="langUISettingsPageResourcesPageDownloadTitle">下载为本地资源</sys:String>
+    <sys:String x:Key="langUISettingsPageResourcesPageDownloadDescription">如果你正在使用资源插件，则可以将网络上的资源全部保存为本地资源包，方便在没有网络的状态下使用</sys:String>
     <sys:String x:Key="langUISettingsPageResourcesPageInformationTitle">资源信息</sys:String>
     <sys:String x:Key="langUISettingsPageResourcesPageInformationDescription">显示当前资源的信息</sys:String>
 
@@ -60,8 +64,10 @@
     <sys:String x:Key="langUISettingsPageStylePageBackgroundDescription">选用一张新的背景图片作为背景</sys:String>
     <sys:String x:Key="langUISettingsPageStylePageDarknessTitle">背景暗化</sys:String>
     <sys:String x:Key="langUISettingsPageStylePageDarknessDescription">选取一个百分比决定背景暗化程度</sys:String>
-    <sys:String x:Key="langUISettingsPageStylePageColorThemeTitle">更改配色</sys:String>
-    <sys:String x:Key="langUISettingsPageStylePageColorThemeDescription">选取一个新的颜色主题来替换现有颜色主题</sys:String>
+    <sys:String x:Key="langUISettingsPageStylePagePrimaryColorThemeTitle">更改主配色</sys:String>
+    <sys:String x:Key="langUISettingsPageStylePagePrimaryColorThemeDescription">选取一个新的颜色来充当主配色，主配色主要表现在：标题，卡片背景，按钮</sys:String>
+    <sys:String x:Key="langUISettingsPageStylePageAccentColorThemeTitle">更改副配色</sys:String>
+    <sys:String x:Key="langUISettingsPageStylePageAccentColorThemeDescription">选取一个新的颜色来充当副配色，副配色主要表现在行动按钮上</sys:String>
 
     <!-- about page-->
     <sys:String x:Key="langUIAboutPageTitle">关于</sys:String>
@@ -127,5 +133,11 @@
     <sys:String x:Key="langCodeStopPageLineItemFirstExistence">最近的车还有{0}站</sys:String>
     <sys:String x:Key="langCodeStopPageLineItemSecoundNothing">没有第二近的车</sys:String>
     <sys:String x:Key="langCodeStopPageLineItemSecoundExistence">第二近的车还有{0}站</sys:String>
+    
+    <!-- reflection function-->
+    <sys:String x:Key="langCodeReflectionNoFile">没有找到文件</sys:String>
+    <sys:String x:Key="langCodeReflectionNoFunction">没有找到对应功能</sys:String>
+    <sys:String x:Key="langCodeReflectionMistakenLocation">此Dll不属于当前城市可应用的资源</sys:String>
+    <sys:String x:Key="langCodeReflectionMistakenDependVersion">此Dll与当前bus_rode版本不和</sys:String>
     
 </ResourceDictionary>

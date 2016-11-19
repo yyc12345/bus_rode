@@ -51,10 +51,10 @@ namespace bus_rode.Kernel.FileIO.FileOperation.Writer {
         public void BeginToWrite() {
             if ((seekWriterStatus == enumFileStatus.Empty) && (stepWriterStatus == enumFileStatus.Empty)) {
 
-                stepWriter = new FileStream(Environment.CurrentDirectory + mainFilePath, FileMode.Create, FileAccess.Write, FileShare.Read);
+                stepWriter = new FileStream(Kernel.Tools.SystemInformation.WorkingPath + mainFilePath, FileMode.Create, FileAccess.Write, FileShare.Read);
                 stepWriterStatus = enumFileStatus.Ready;
 
-                seekWriter = new StreamWriter(Environment.CurrentDirectory + seekFilePath, false, Assistance.utf8WithoutBOM);
+                seekWriter = new StreamWriter(Kernel.Tools.SystemInformation.WorkingPath + seekFilePath, false, Assistance.utf8WithoutBOM);
                 seekWriterStatus = enumFileStatus.Ready;
 
             } else {

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using bus_rode.Kernel.Tools;
 
 namespace bus_rode.UserInterface.UserControl {
     /// <summary>
@@ -22,27 +23,9 @@ namespace bus_rode.UserInterface.UserControl {
         public SettingsPageChoiceItem() {
             InitializeComponent();
 
-            //设置绑定
-            Binding bTitle = new Binding(), bDescription = new Binding();
-            bTitle.Mode = BindingMode.OneWay;
-            bDescription.Mode = BindingMode.OneWay;
-
-            bTitle.Source = this;
-            bTitle.Path = new PropertyPath("Title");
-            bDescription.Source = this;
-            bDescription.Path = new PropertyPath("Description");
-
-            this.uiTitle.SetBinding(TextBlock.TextProperty, bTitle);
-            this.uiDescription.SetBinding(TextBlock.TextProperty, bDescription);
-
-            //设置绑定
-            Binding bChoiceWords = new Binding();
-            bChoiceWords.Mode = BindingMode.TwoWay;
-            bChoiceWords.Source = this;
-            bChoiceWords.Path = new PropertyPath("ChoiceWords");
-            this.uiChoiceWords.SetBinding(TextBlock.TextProperty, bChoiceWords);
+            FlagOfForcingToChange = false;
         }
-        
+
         /// <summary>
         /// 标题
         /// </summary>
@@ -52,7 +35,11 @@ namespace bus_rode.UserInterface.UserControl {
         }
 
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("Title", typeof(string), typeof(SettingsPageChoiceItem), new PropertyMetadata(""));
+            DependencyProperty.Register("Title", typeof(string), typeof(SettingsPageChoiceItem),
+                        new PropertyMetadata("", new PropertyChangedCallback((DependencyObject d, DependencyPropertyChangedEventArgs e) => {
+                            SettingsPageChoiceItem v = d as SettingsPageChoiceItem;
+                            v.uiTitle.Text = e.NewValue.ToString();
+                        })));
 
         /// <summary>
         /// 描述
@@ -63,20 +50,65 @@ namespace bus_rode.UserInterface.UserControl {
         }
 
         public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.Register("Description", typeof(string), typeof(SettingsPageChoiceItem), new PropertyMetadata(""));
+            DependencyProperty.Register("Description", typeof(string), typeof(SettingsPageChoiceItem),
+                        new PropertyMetadata("", new PropertyChangedCallback((DependencyObject d, DependencyPropertyChangedEventArgs e) => {
+                            SettingsPageChoiceItem v = d as SettingsPageChoiceItem;
+                            v.uiDescription.Text = e.NewValue.ToString();
+                        })));
 
         /// <summary>
         /// 显示的选择的信息
         /// </summary>
-        public string ChoiceWords {
-            get { return (string)GetValue(ChoiceWordsProperty); }
-            set { SetValue(ChoiceWordsProperty, value); }
+        public string ChoiceList {
+            get { return (string)GetValue(ChoiceListProperty); }
+            set { SetValue(ChoiceListProperty, value); }
         }
 
-        public static readonly DependencyProperty ChoiceWordsProperty =
-            DependencyProperty.Register("ChoiceWords", typeof(string), typeof(SettingsPageChoiceItem), new PropertyMetadata(""));
+        public static readonly DependencyProperty ChoiceListProperty =
+            DependencyProperty.Register("ChoiceList", typeof(string), typeof(SettingsPageChoiceItem),
+                        new PropertyMetadata("", new PropertyChangedCallback((DependencyObject d, DependencyPropertyChangedEventArgs e) => {
+                            SettingsPageChoiceItem v = d as SettingsPageChoiceItem;
+                            v.uiChoice.ItemsSource = new StringGroup(e.NewValue.ToString(), ",").ToList();
+                        })));
 
+        /// <summary>
+        /// 选择的项
+        /// </summary>
+        public int ChoiceSelectedIndex {
+            get { return uiChoice.SelectedIndex; }
+            set {
+                FlagOfForcingToChange = true;
+                uiChoice.SelectedIndex = value;
+            }
+        }
 
+        /// <summary>
+        /// 强制改变数值的标志
+        /// </summary>
+        private bool FlagOfForcingToChange;
+        /// <summary>
+        /// 选项改变的事件
+        /// </summary>
+        public event Action DataChanged;
+        /// <summary>
+        /// 引发事件检查
+        /// </summary>
+        private void OnDataChanged() {
+            if (DataChanged != null) DataChanged();
+        }
+
+        private void fx_DataChange(object sender, SelectionChangedEventArgs e) {
+            //judge flag
+            if (FlagOfForcingToChange == true) {
+                FlagOfForcingToChange = false;
+                return;
+            }else if (uiChoice.SelectedIndex == -1) {
+                //judge index
+                return;
+            }else {
+                OnDataChanged();
+            }
+        }
 
     }
 }

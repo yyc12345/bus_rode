@@ -19,14 +19,12 @@
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
 
-        <Button Style="{DynamicResource MaterialDesignFlatButton}" Grid.ColumnSpan="2" Background="#00000000" BorderThickness="0" Margin="0" Width="{Binding ElementName=uiUserControlBackground,Path=ActualWidth}" Height="{Binding ElementName=uiUserControlBackground,Path=ActualHeight}"/>
-
         <StackPanel Grid.Column="0" Orientation="Vertical">
             <TextBlock x:Name="uiTitle" FontSize="16" Grid.Row="0" Margin="16,16,0,16" VerticalAlignment="Center" HorizontalAlignment="Left" Text=""/>
             <TextBlock x:Name="uiDescription" Foreground="Gray" FontSize="14" Grid.Row="1" Margin="16,0,0,16" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" TextWrapping="Wrap"/>
         </StackPanel>
 
-        <ToggleButton x:Name="uiToggleButton" Grid.Column="1" VerticalAlignment="Top">
+        <ToggleButton x:Name="uiToggleButton" Grid.Column="1" VerticalAlignment="Top" Click="fx_DataChange">
             <ToggleButton.Margin>
                 <!-- 绑定转换器-->
                 <MultiBinding Converter="{StaticResource marginConverter}">

@@ -22,20 +22,6 @@ namespace bus_rode.UserInterface.UserControl {
 
         public SettingsPageNormalItem() {
             InitializeComponent();
-
-            //设置绑定
-            Binding bTitle = new Binding(), bDescription = new Binding();
-            bTitle.Mode = BindingMode.OneWay;
-            bDescription.Mode = BindingMode.OneWay;
-
-            bTitle.Source = this;
-            bTitle.Path = new PropertyPath("Title");
-            bDescription.Source = this;
-            bDescription.Path = new PropertyPath("Description");
-
-            this.uiTitle.SetBinding(TextBlock.TextProperty, bTitle);
-            this.uiDescription.SetBinding(TextBlock.TextProperty, bDescription);
-
         }
 
         /// <summary>
@@ -47,7 +33,11 @@ namespace bus_rode.UserInterface.UserControl {
         }
 
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("Title", typeof(string), typeof(SettingsPageNormalItem), new PropertyMetadata(""));
+            DependencyProperty.Register("Title", typeof(string), typeof(SettingsPageNormalItem),
+                        new PropertyMetadata("", new PropertyChangedCallback((DependencyObject d, DependencyPropertyChangedEventArgs e) => {
+                            SettingsPageNormalItem v = d as SettingsPageNormalItem;
+                            v.uiTitle.Text = e.NewValue.ToString();
+                        })));
 
         /// <summary>
         /// 描述
@@ -58,8 +48,26 @@ namespace bus_rode.UserInterface.UserControl {
         }
 
         public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.Register("Description", typeof(string), typeof(SettingsPageNormalItem), new PropertyMetadata(""));
+            DependencyProperty.Register("Description", typeof(string), typeof(SettingsPageNormalItem),
+                        new PropertyMetadata("", new PropertyChangedCallback((DependencyObject d, DependencyPropertyChangedEventArgs e) => {
+                            SettingsPageNormalItem v = d as SettingsPageNormalItem;
+                            v.uiDescription.Text = e.NewValue.ToString();
+                        })));
 
 
+        /// <summary>
+        /// 选项改变的事件
+        /// </summary>
+        public event Action DataChanged;
+        /// <summary>
+        /// 引发事件检查
+        /// </summary>
+        private void OnDataChanged() {
+            if (DataChanged != null) DataChanged();
+        }
+
+        private void fx_DataChange(object sender, RoutedEventArgs e) {
+            OnDataChanged();
+        }
     }
 }

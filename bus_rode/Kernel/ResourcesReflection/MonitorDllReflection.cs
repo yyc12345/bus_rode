@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using bus_rode.Kernel.Tools;
 
 namespace bus_rode.Kernel.ResourcesReflection {
     public class MonitorDllReflection {
@@ -11,15 +12,13 @@ namespace bus_rode.Kernel.ResourcesReflection {
         public MonitorDllReflection() {
             MainThread = new System.Threading.Thread(ReadLoop);
 
-            AvoidUpdate = false;
-            ForceToUpdate = false;
-
-            DllDisable = null;
-            DllDependBusRodeVersion = "";
-            DllGetTick = "";
-            DllRegoin = "";
+            DllState = enumDllReflectionState.Unknow;
+            DllDependBusRodeVersion = 0;
+            DllGetTick = 5000;
+            DllRegion = "";
             DllVersion = "";
             DllWriter = "";
+
         }
 
         /// <summary>
@@ -39,6 +38,14 @@ namespace bus_rode.Kernel.ResourcesReflection {
         /// 反射所需要的获取得到的类
         /// </summary>
         public object ReflectionClass;
+        /// <summary>
+        /// dll中初始化的方法
+        /// </summary>
+        public MethodInfo MethodInitialize;
+        /// <summary>
+        /// dll中获取数据的方法
+        /// </summary>
+        public MethodInfo MethodGetData;
 
         /// <summary>
         /// 主循环线程
@@ -46,30 +53,21 @@ namespace bus_rode.Kernel.ResourcesReflection {
         public System.Threading.Thread MainThread;
 
         /// <summary>
-        /// 设为true停止刷新
+        /// dll state
         /// </summary>
-        public bool AvoidUpdate;
-        /// <summary>
-        /// 强制一次刷新，优先级高于Avoid，且刷新一次之后自动变为false
-        /// </summary>
-        public bool ForceToUpdate;
-
-        /// <summary>
-        /// null is unknow, true is disable, false is able
-        /// </summary>
-        public bool? DllDisable;
+        public enumDllReflectionState DllState;
         /// <summary>
         /// 依赖版本
         /// </summary>
-        public string DllDependBusRodeVersion;
+        public int DllDependBusRodeVersion;
         /// <summary>
         /// 地址
         /// </summary>
-        public string DllRegoin;
+        public string DllRegion;
         /// <summary>
         /// 获取间隔
         /// </summary>
-        public string DllGetTick;
+        public int DllGetTick;
         /// <summary>
         /// 作者
         /// </summary>
@@ -79,31 +77,183 @@ namespace bus_rode.Kernel.ResourcesReflection {
         /// </summary>
         public string DllVersion;
 
-        public bool CheckFile() {
-            throw new NotImplementedException();
+        /// <summary>
+        /// 检查文件过程，如果出错，返回错误描述
+        /// </summary>
+        /// <param name="installedRegion">要检查的地区名</param>
+        /// <returns></returns>
+        public string CheckFile(string installedRegion) {
+            //check file
+            if (!System.IO.File.Exists(Kernel.Tools.SystemInformation.WorkingPath + "MonitorDll.dll")) {
+                DllState = enumDllReflectionState.Illegal;
+                return Language.GetItem("langCodeReflectionNoFile");
+            }
+
+            //check basic function
+            var ass = System.Reflection.Assembly.LoadFile(Kernel.Tools.SystemInformation.WorkingPath + "MonitorDll.dll");
+            Type tp;
+            FieldInfo dependVersion, region, tick, writer, version, command;
+            MethodInfo initialize, getData;
+            try {
+                tp = ass.GetType("BusRodeDll.MonitorDll", true);
+
+                dependVersion = tp.GetField("DllDependBusRodeVersion");
+                region = tp.GetField("DllRegion");
+                tick = tp.GetField("DllGetTick");
+                writer = tp.GetField("DllWriter");
+                version = tp.GetField("DllVersion");
+
+                command = tp.GetField("DllCommand");
+
+                initialize = tp.GetMethod("Initialize", BindingFlags.Instance | BindingFlags.Public);
+                getData = tp.GetMethod("GetData", BindingFlags.Instance | BindingFlags.Public);
+
+            } catch (Exception) {
+                DllState = enumDllReflectionState.Illegal;
+                return Language.GetItem("langCodeReflectionNoFunction");
+            }
+
+            //set instance
+            ReflectionClass = Activator.CreateInstance(tp);
+
+            //check detail
+            if (Kernel.Tools.ApplicationInformation.AppBuildNumber != System.Convert.ToInt32(dependVersion.GetValue(ReflectionClass))) {
+                DllState = enumDllReflectionState.Illegal;
+                return Language.GetItem("langCodeReflectionMistakenDependVersion");
+            }
+            if (installedRegion != region.GetValue(ReflectionClass).ToString()) {
+                DllState = enumDllReflectionState.Illegal;
+                return Language.GetItem("langCodeReflectionMistakenLocation");
+            }
+
+            //write message
+            DllDependBusRodeVersion = System.Convert.ToInt32(dependVersion.GetValue(ReflectionClass));
+            DllRegion = region.GetValue(ReflectionClass).ToString();
+            DllGetTick = System.Convert.ToInt32(tick.GetValue(ReflectionClass));
+            DllWriter = writer.GetValue(ReflectionClass).ToString();
+            DllVersion = version.GetValue(ReflectionClass).ToString();
+
+            Command = command;
+            MethodInitialize = initialize;
+            MethodGetData = getData;
+
+            DllState = enumDllReflectionState.Legal;
+            return "";
         }
 
-        public void Initialize() {
-            throw new NotImplementedException();
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        public Task Initialize() {
+            if (DllState != enumDllReflectionState.Legal) throw new InvalidOperationException();
+
+            DllState = enumDllReflectionState.Initiatlizing;
+            return Task.Run(() => {
+                var result = System.Convert.ToBoolean(MethodInitialize.Invoke(ReflectionClass, null));
+
+                if (result) DllState = enumDllReflectionState.Ready;
+                else DllState = enumDllReflectionState.Disabled;
+
+                FinishInitialization();
+            });
         }
 
-        public void ReadLoop() {
-            throw new NotImplementedException();
+        /// <summary>
+        /// 开始阅读
+        /// </summary>
+        public void StartReading() {
+            if (DllState != enumDllReflectionState.Ready) throw new InvalidOperationException();
+            DllState = enumDllReflectionState.Running;
+            MainThread.Start();
         }
 
+        /// <summary>
+        /// 阅读循环
+        /// </summary>
+        private void ReadLoop() {
+
+            string result = "";
+            while (true) {
+
+                //尝试获取，获取失败返回
+                try {
+                    result = MethodGetData.Invoke(ReflectionClass, null).ToString();
+                } catch (Exception) {
+                    continue;
+                }
+
+                if (result == "") continue;
+
+                //set list
+                var list = new List<Kernel.Management.UserInterfaceBlockStruct.LinePageRuntimeBlockStruct>();
+                foreach (var item in new StringGroup(result, "@").ToStringGroup()) {
+                    var temp = new StringGroup(item, "#").ToStringGroup();
+                    list.Add(new Management.UserInterfaceBlockStruct.LinePageRuntimeBlockStruct() {
+                        ID = temp[0],
+                        IsUpLine = temp[1] == "0" ? true : false,
+                        BelongToStopIndex = System.Convert.ToInt32(temp[2]),
+                        Message1 = temp[3],
+                        Message2 = temp[4],
+                        Message3 = temp[5]
+                    });
+                }
+
+                NewData(list);
+
+            }
+        }
+
+        /// <summary>
+        /// 强制一次获取，必须在停止主循环的前提下调用，且通过此函数返回数据而不使用委托
+        /// </summary>
+        /// <returns></returns>
+        public List<Kernel.Management.UserInterfaceBlockStruct.LinePageRuntimeBlockStruct> ForceToGet() {
+
+            string result = "";
+            try {
+                result = MethodGetData.Invoke(ReflectionClass, null).ToString();
+            } catch (Exception) {
+                return new List<Management.UserInterfaceBlockStruct.LinePageRuntimeBlockStruct>();
+            }
+
+            if (result == "") return new List<Management.UserInterfaceBlockStruct.LinePageRuntimeBlockStruct>();
+
+            //set list
+            var list = new List<Kernel.Management.UserInterfaceBlockStruct.LinePageRuntimeBlockStruct>();
+            foreach (var item in new StringGroup(result, "@").ToStringGroup()) {
+                var temp = new StringGroup(item, "#").ToStringGroup();
+                list.Add(new Management.UserInterfaceBlockStruct.LinePageRuntimeBlockStruct() {
+                    ID = temp[0],
+                    IsUpLine = temp[1] == "0" ? true : false,
+                    BelongToStopIndex = System.Convert.ToInt32(temp[2]),
+                    Message1 = temp[3],
+                    Message2 = temp[4],
+                    Message3 = temp[5]
+                });
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// 停止
+        /// </summary>
         public void Stop() {
-            throw new NotImplementedException();
+            if (DllState != enumDllReflectionState.Running) {
+                throw new InvalidOperationException();
+            } else {
+                try {
+                    MainThread.Abort();
+                } catch {
+
+                }
+
+                DllState = enumDllReflectionState.Ready;
+            }
         }
 
-        
+
     }
 
-    public class MonitorBlockStruct {
-        public string Id;
-        public string Message1;
-        public string Message2;
-        public string Message3;
-        public int BelongToStopIndex;
-    }
 
 }

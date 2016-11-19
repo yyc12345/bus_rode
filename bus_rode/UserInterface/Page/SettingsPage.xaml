@@ -8,7 +8,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:converter="clr-namespace:bus_rode.UserInterface.Converter"
              mc:Ignorable="d" TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             d:DesignHeight="400" d:DesignWidth="800" FontFamily="Microsoft YaHei UI Light">
+             d:DesignHeight="2400" d:DesignWidth="800" FontFamily="Microsoft YaHei UI Light">
 
     <!-- 转换器资源-->
     <UserControl.Resources>
@@ -57,7 +57,9 @@
                         <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
                         <uiControl:SettingsPageToggleButtonItem Title="{DynamicResource langUISettingsPageNormalPageAutoTranslateTitle}" Description="{DynamicResource langUISettingsPageNormalPageAutoTranslateDescription}" Margin="0"/>
                         <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
-                        <uiControl:SettingsPageChoiceItem Title="{DynamicResource langUISettingsPageNormalPageLanguageTitle}" Description="{DynamicResource langUISettingsPageNormalPageLanguageDescription}" ChoiceWords="" Margin="0"/>
+                        <uiControl:SettingsPageToggleButtonItem Title="{DynamicResource langUISettingsPageNormalPageAutoDarkThemeTitle}" Description="{DynamicResource langUISettingsPageNormalPageAutoDarkThemeDescription}" Margin="0"/>
+                        <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
+                        <uiControl:SettingsPageChoiceItem Title="{DynamicResource langUISettingsPageNormalPageLanguageTitle}" Description="{DynamicResource langUISettingsPageNormalPageLanguageDescription}" Margin="0"/>
                         <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
                         <uiControl:SettingsPageNormalItem Title="{DynamicResource langUISettingsPageNormalPageRestartTitle}" Description="{DynamicResource langUISettingsPageNormalPageRestartDescription}" Margin="0"/>
                     </StackPanel>
@@ -91,6 +93,8 @@
                         <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
                         <uiControl:SettingsPageNormalItem Title="{DynamicResource langUISettingsPageResourcesPageDeleteTitle}" Description="{DynamicResource langUISettingsPageResourcesPageDeleteDescription}" Margin="0"/>
                         <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
+                        <uiControl:SettingsPageNormalItem Title="{DynamicResource langUISettingsPageResourcesPageDownloadTitle}" Description="{DynamicResource langUISettingsPageResourcesPageDownloadDescription}" Margin="0"/>
+                        <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
                         <uiControl:SettingsPageNormalItem Title="{DynamicResource langUISettingsPageResourcesPageInformationTitle}" Description="{DynamicResource langUISettingsPageResourcesPageInformationDescription}" Margin="0"/>
                     </StackPanel>
                 </materialDesign:Card>
@@ -106,7 +110,10 @@
                         <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
                         <uiControl:SettingsPageSliderItem Title="{DynamicResource langUISettingsPageStylePageDarknessTitle}" Description="{DynamicResource langUISettingsPageStylePageDarknessDescription}" ConverterParam="{}{0}%" Margin="0" Maximum="100" Minimum="0" Value="0"/>
                         <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
-                        <uiControl:SettingsPageChoiceItem Title="{DynamicResource langUISettingsPageStylePageColorThemeTitle}" Description="{DynamicResource langUISettingsPageStylePageColorThemeDescription}" ChoiceWords="" Margin="0"/>
+                        <uiControl:SettingsPageChoiceItem Title="{DynamicResource langUISettingsPageStylePagePrimaryColorThemeTitle}" Description="{DynamicResource langUISettingsPageStylePagePrimaryColorThemeDescription}" Margin="0"/>
+                        <Line StrokeThickness="1" Opacity="0.5" Stroke="Gray" X1="0" Y1="0" X2="{Binding ElementName=uiSettingMainContainer,Path=ActualWidth}" Y2="0"/>
+                        <uiControl:SettingsPageChoiceItem Title="{DynamicResource langUISettingsPageStylePageAccentColorThemeTitle}" Description="{DynamicResource langUISettingsPageStylePageAccentColorThemeDescription}" Margin="0"/>
+
                     </StackPanel>
                 </materialDesign:Card>
 

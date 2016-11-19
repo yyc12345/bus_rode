@@ -27,7 +27,7 @@ namespace bus_rode.Kernel.FileIO.FileOperation.Writer {
             var intoContant = into.ConvertToStringGroup();
 
             if (intoContant.sourceString == "") { throw new NullReferenceException("Nothing need write!"); }
-            StreamWriter fw = new StreamWriter(Environment.CurrentDirectory + filePath, false, Assistance.utf8WithoutBOM);
+            StreamWriter fw = new StreamWriter(Kernel.Tools.SystemInformation.WorkingPath + filePath, false, Assistance.utf8WithoutBOM);
 
             //写入
             foreach (string item in intoContant.ToStringGroup()) {

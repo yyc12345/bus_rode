@@ -32,10 +32,10 @@ This is a convenient application which can monitor bus and show city's public tr
 ---
 #### Recent plan  
 
-* Design a UI for bus\_rode.  
-* Slove some issues at the progress of user interface development.  
-* Finish kernel's development.  
-* Reconstruction the kernel, and change how getting bus messages.  
+* Finish ResourcesReflection class.  
+* Create a project which can show the unsloved issues on that main application crashed. The invoke which in main application, need use \#IF DEBUG, because take consideration into debug.  
+* Update the file which describe the command and output data's structure in MOD development.
+* Create 4 smaple of MOD development. 2 is Monitor dll. 2 is Resources dll. And the one is mini version. The other is full version which include the method of processing command.
 
 ---
 #### License

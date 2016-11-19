@@ -95,6 +95,7 @@
     <Compile Include="Kernel\Management\UserInterfaceBlockStruct\LinePageSubwayBlockStruct.cs" />
     <Compile Include="Kernel\Network\AutoTranslate.cs" />
     <Compile Include="Kernel\Network\GuideWeb.cs" />
+    <Compile Include="Kernel\ResourcesReflection\enumDllReflection.cs" />
     <Compile Include="Kernel\ResourcesReflection\MonitorDllReflection.cs" />
     <Compile Include="Kernel\ResourcesReflection\ResourcesDllReflection.cs" />
     <Compile Include="Kernel\Tools\Information.cs" />

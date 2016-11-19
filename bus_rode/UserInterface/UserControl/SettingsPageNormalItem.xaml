@@ -5,18 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:bus_rode.UserInterface.UserControl"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converter="clr-namespace:bus_rode.UserInterface.Converter"
              mc:Ignorable="d" TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              d:DesignHeight="100" d:DesignWidth="400">
 
+    <UserControl.Resources>
+        <converter:SettingsPageItemControlMargin x:Key="marginConverter"/>
+    </UserControl.Resources>
+
     <Grid x:Name="uiUserControlBackground">
-        <Button Style="{DynamicResource MaterialDesignFlatButton}" Background="#00000000" BorderThickness="0" Margin="0" Width="{Binding ElementName=uiUserControlBackground,Path=ActualWidth}" Height="{Binding ElementName=uiUserControlBackground,Path=ActualHeight}"/>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
         <StackPanel Orientation="Vertical">
             <TextBlock x:Name="uiTitle" FontSize="16" Grid.Row="0" Margin="16,16,16,16" VerticalAlignment="Center" HorizontalAlignment="Left" Text=""/>
             <TextBlock x:Name="uiDescription" Foreground="Gray" FontSize="14" Grid.Row="1" Margin="16,0,16,16" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" TextWrapping="Wrap"/>
         </StackPanel>
 
-        
+        <Button x:Name="uiButton" Grid.Column="1" Margin="0"
+                Background="#00000000" BorderThickness="0" Height="Auto" Click="fx_DataChange">
+            <materialDesign:PackIcon Kind="ChevronRight" Height="32" Width="32" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Foreground="{DynamicResource MaterialDesignBody}"/>
+        </Button>
+
     </Grid>
 
 </UserControl>
