@@ -1,0 +1,25 @@
+﻿<Window x:Class="bus_rodeException.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:bus_rodeException"
+        mc:Ignorable="d"
+        Title="Bus_rode has been crashed" Height="300" Width="400" FontFamily="Microsoft YaHei UI Light" Icon="bus_rode_icon_orange.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Foreground="Black" FontSize="12"  Margin="15,0,15,0"
+                   Text="I'm very sorry that you see this window, because bus_rode has been crashed by some bugs. If you want, you can tell us what happend and what crash bus_rode."
+                   VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="0,10,0,10">
+            <Button Width="150" Content="Create bug's reporter" Margin="0,0,5,0"/>
+            <Button Width="150" Content="Only restart bus_rode" Margin="5,0,0,0"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

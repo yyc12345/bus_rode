@@ -83,6 +83,8 @@ namespace bus_rode.Kernel.ResourcesReflection {
         /// <param name="installedRegion">要检查的地区名</param>
         /// <returns></returns>
         public string CheckFile(string installedRegion) {
+            if (DllState != enumDllReflectionState.Unknow) throw new InvalidOperationException();
+
             //check file
             if (!System.IO.File.Exists(Kernel.Tools.SystemInformation.WorkingPath + "MonitorDll.dll")) {
                 DllState = enumDllReflectionState.Illegal;
@@ -208,6 +210,7 @@ namespace bus_rode.Kernel.ResourcesReflection {
         /// </summary>
         /// <returns></returns>
         public List<Kernel.Management.UserInterfaceBlockStruct.LinePageRuntimeBlockStruct> ForceToGet() {
+            if (DllState != enumDllReflectionState.Ready) throw new InvalidOperationException();
 
             string result = "";
             try {
@@ -244,7 +247,7 @@ namespace bus_rode.Kernel.ResourcesReflection {
             } else {
                 try {
                     MainThread.Abort();
-                } catch {
+                } catch (Exception) {
 
                 }
 
