@@ -86,13 +86,13 @@ namespace bus_rode.Kernel.ResourcesReflection {
             if (DllState != enumDllReflectionState.Unknow) throw new InvalidOperationException();
 
             //check file
-            if (!System.IO.File.Exists(Kernel.Tools.SystemInformation.WorkingPath + "MonitorDll.dll")) {
+            if (!System.IO.File.Exists(Kernel.Tools.SystemInformation.WorkingPath + @"\MonitorDll.dll")) {
                 DllState = enumDllReflectionState.Illegal;
                 return Language.GetItem("langCodeReflectionNoFile");
             }
 
             //check basic function
-            var ass = System.Reflection.Assembly.LoadFile(Kernel.Tools.SystemInformation.WorkingPath + "MonitorDll.dll");
+            var ass = System.Reflection.Assembly.LoadFile(Kernel.Tools.SystemInformation.WorkingPath + @"\MonitorDll.dll");
             Type tp;
             FieldInfo dependVersion, region, tick, writer, version, command;
             MethodInfo initialize, getData;

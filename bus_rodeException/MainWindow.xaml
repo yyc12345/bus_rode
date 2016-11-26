@@ -4,21 +4,43 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:bus_rodeException"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Bus_rode has been crashed" Height="300" Width="400" FontFamily="Microsoft YaHei UI Light" Icon="bus_rode_icon_orange.ico">
+        MaxHeight="300" MaxWidth="400" MinHeight="300" MinWidth="400"
+        FontFamily="Microsoft YaHei UI Light"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Title="Crash of bus_rode" Height="300" Width="400" Icon="bus_rode_icon_orange.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Foreground="Black" FontSize="12"  Margin="15,0,15,0"
+        <Grid Grid.Row="0" Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Height="56" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="56"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <materialDesign:PackIcon Foreground="#d26f00" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Kind="Bug"/>
+                <TextBlock Foreground="#d26f00" Text="Crash" FontSize="20" Grid.Column="1" VerticalAlignment="Center"/>
+            </Grid>
+            
+            <TextBlock Grid.Row="1" FontSize="15"
                    Text="I'm very sorry that you see this window, because bus_rode has been crashed by some bugs. If you want, you can tell us what happend and what crash bus_rode."
                    VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"/>
 
+        </Grid>
+
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="0,10,0,10">
-            <Button Width="150" Content="Create bug's reporter" Margin="0,0,5,0"/>
-            <Button Width="150" Content="Only restart bus_rode" Margin="5,0,0,0"/>
+            <Button Width="180" Content="Restart" Margin="0,0,5,0"/>
+            <Button Width="180" Content="Create bug's report" Margin="5,0,0,0" Style="{DynamicResource MaterialDesignFlatButton}"/>
         </StackPanel>
 
     </Grid>

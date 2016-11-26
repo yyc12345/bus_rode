@@ -92,13 +92,13 @@ namespace bus_rode.Kernel.ResourcesReflection {
         /// <returns></returns>
         public string CheckFile(string installedRegion) {
             //check file
-            if (!System.IO.File.Exists(Kernel.Tools.SystemInformation.WorkingPath + "ResourcesDll.dll")) {
+            if (!System.IO.File.Exists(Kernel.Tools.SystemInformation.WorkingPath + @"\ResourcesDll.dll")) {
                 DllState = enumDllReflectionState.Illegal;
                 return Language.GetItem("langCodeReflectionNoFile");
             }
 
             //check basic function
-            var ass = System.Reflection.Assembly.LoadFile(Kernel.Tools.SystemInformation.WorkingPath + "ResourcesDll.dll");
+            var ass = System.Reflection.Assembly.LoadFile(Kernel.Tools.SystemInformation.WorkingPath + @"\ResourcesDll.dll");
             Type tp;
             FieldInfo dependVersion, region, writer, version, command;
             MethodInfo initialize, getData;
