@@ -109,7 +109,8 @@
             </Grid.ColumnDefinitions>
 
             <!-- 侧边线路站点预览器-->
-            <uiControl:LinePageBusPreview Grid.Column="1" Grid.RowSpan="2"/>
+            <!-- test property: StopCount="5" NowPosition="1" RuntimeBusMsg="0,1,1,2,4,2,1,1,2"-->
+            <uiControl:LinePageBusPreview Grid.Column="1" Grid.RowSpan="2" />
 
             <!-- 刷新按钮-->
             <StackPanel Visibility="Collapsed" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.RowSpan="2" Margin="0,16,0,0">

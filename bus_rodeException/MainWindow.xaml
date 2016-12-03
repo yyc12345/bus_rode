@@ -20,6 +20,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <Grid Height="56" HorizontalAlignment="Center">
@@ -36,11 +37,17 @@
                    Text="I'm very sorry that you see this window, because bus_rode has been crashed by some bugs. If you want, you can tell us what happend and what crash bus_rode."
                    VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"/>
 
+            <materialDesign:Chip Grid.Row="2" HorizontalAlignment="Center" x:Name="uiCreatedMessage" Visibility="Collapsed">
+                <TextBlock Grid.Row="1" FontSize="15"
+                   Text="Error's report has been created in work path."
+                   VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+            </materialDesign:Chip>
+
         </Grid>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="0,10,0,10">
-            <Button Width="180" Content="Restart" Margin="0,0,5,0"/>
-            <Button Width="180" Content="Create bug's report" Margin="5,0,0,0" Style="{DynamicResource MaterialDesignFlatButton}"/>
+            <Button Width="180" Content="Restart" Margin="0,0,5,0" Click="Button_Click_1"/>
+            <Button Width="180" Content="Create bug's report" Margin="5,0,0,0" Style="{DynamicResource MaterialDesignFlatButton}" Click="Button_Click"/>
         </StackPanel>
 
     </Grid>

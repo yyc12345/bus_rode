@@ -21,8 +21,7 @@ namespace bus_rode {
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         public static void Main() {
 
-#if DEBUG
-#else
+#if !DEBUG
             //binding exception processor
             //ui
             Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
@@ -36,8 +35,7 @@ namespace bus_rode {
         }
 
 
-#if DEBUG
-#else
+#if !DEBUG
         //thread
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
             WriteExceptionAndRestart(new Exception("the main thread(ui thread) have a unhandled exception, the object " + e.ExceptionObject.ToString() + " invoke this exception."));

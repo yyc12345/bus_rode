@@ -22,14 +22,25 @@ namespace bus_rode.UserInterface.UserControl {
         public LinePageBusPreview() {
             InitializeComponent();
 
-            colorShowGrid = new List<Rectangle>();
             stopsCountList = new List<int>();
+
+            //set and apply brush
+            stopBrush = new LinearGradientBrush();
+            stopBrush.StartPoint = new Point(0.5, 0);
+            stopBrush.EndPoint = new Point(0.5, 1);
+
+            stopBrush.GradientStops.Add(new GradientStop(Color.FromArgb(0, 30, 144, 255), 0));
+            stopBrush.GradientStops.Add(new GradientStop(Color.FromArgb(0, 30, 144, 255), 1));
+
+            uiStopBrushGrid.Background = stopBrush;
+
+            colorShow = new List<GradientStop>();
         }
 
         #region 依赖项属性
 
         /// <summary>
-        /// 运行时数据，分隔符, 每一项是某车所在坐标，这边会自行统计的-更改此数值会导致控件被刷新
+        /// 运行时数据，分隔符, 每一项是某车所在坐标（以0起始），这边会自行统计的-更改此数值会导致控件被刷新
         /// </summary>
         public string RuntimeBusMsg {
             get { return (string)GetValue(RuntimeBusMsgProperty); }
@@ -75,47 +86,48 @@ namespace bus_rode.UserInterface.UserControl {
 
         #endregion
 
-        /// <summary>
-        /// 显示的车辆数据的框
-        /// </summary>
-        private List<Rectangle> colorShowGrid;
+        private List<GradientStop> colorShow;
         /// <summary>
         /// 当前车站计数器
         /// </summary>
         private List<int> stopsCountList;
 
         /// <summary>
+        /// 渐变画刷
+        /// </summary>
+        private LinearGradientBrush stopBrush;
+
+        /// <summary>
         /// 重新设置站台个数，该方法同时会清空所有现有数据，隐藏箭头
         /// </summary>
         private void SetStopCount() {
-            //remove all
-            foreach (var item in colorShowGrid) { uiUserControlBackground.Children.Remove(item); }
-            colorShowGrid.Clear();
-            if (StopCount == 0) { } else {
-                for (int i = 0; i < StopCount; i++) {
-                    //set property
-                    var cache = new Rectangle();
-                    cache.StrokeThickness = 0;
-                    cache.Fill = new SolidColorBrush(Color.FromArgb(0, 30, 144, 255));
-                    Grid.SetRow(cache, i);
-                    Grid.SetColumn(cache, 1);
-                    //add to list
-                    colorShowGrid.Add(cache);
-                    //add to ui
-                    uiUserControlBackground.Children.Add(cache);
-                }
-            }
+            //calcuate height (add 1 because i must promise the position is the middle of each block)
+            double stopHeight = 1d / (StopCount + 1);
 
-            //reset 
-            stopsCountList.Clear();
+            //remove all and set head and tail
+            stopBrush.GradientStops.Clear();
+            stopBrush.GradientStops.Add(new GradientStop(Color.FromArgb(0, 30, 144, 255), 0));
+            stopBrush.GradientStops.Add(new GradientStop(Color.FromArgb(0, 30, 144, 255), 1));
 
-            //set row
+            //set row and set color
             uiUserControlBackground.RowDefinitions.Clear();
             if (StopCount == 0) { } else {
                 for (int i = 0; i < StopCount; i++) {
+                    //row
                     uiUserControlBackground.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
+                    //color
+                    colorShow.Add(new GradientStop(Color.FromArgb(0, 30, 144, 255), (i + 1) * stopHeight));
                 }
             }
+
+            //copy color to list
+            foreach (var item in colorShow) {
+                stopBrush.GradientStops.Add(item);
+
+            }
+
+            //set left background cross row
+            Grid.SetRowSpan(uiStopBrushGrid, StopCount == 0 ? 1 : StopCount);
 
             //hide arrow
             NowPosition = -1;
@@ -139,8 +151,8 @@ namespace bus_rode.UserInterface.UserControl {
         private void SetColor() {
             //如果没有数据，全部刷为空白
             if (RuntimeBusMsg == "") {
-                foreach (var item in colorShowGrid) {
-                    item.Fill = new SolidColorBrush(Color.FromArgb(0, 30, 144, 255));
+                foreach (var item in colorShow) {
+                    item.Color = Color.FromArgb(0, 30, 144, 255);
                 }
 
                 return;
@@ -170,12 +182,12 @@ namespace bus_rode.UserInterface.UserControl {
             //0->105->180->225->255为二次函数式渐变，目的在于区分无车和有车状态下颜色过于相似问题
             int index = 0;
             foreach (var item in stopsCountList) {
-                if (item >= countAreaUnit * 4) colorShowGrid[index].Fill = new SolidColorBrush(Color.FromArgb(255, 30, 144, 255));
-                else if (item >= countAreaUnit * 3) colorShowGrid[index].Fill = new SolidColorBrush(Color.FromArgb(225, 30, 144, 255));
-                else if (item >= countAreaUnit * 2) colorShowGrid[index].Fill = new SolidColorBrush(Color.FromArgb(180, 30, 144, 255));
-                else if (item >= countAreaUnit * 1) colorShowGrid[index].Fill = new SolidColorBrush(Color.FromArgb(105, 30, 144, 255));
-                else colorShowGrid[index].Fill = new SolidColorBrush(Color.FromArgb(0, 30, 144, 255));
-                index ++;
+                if (item >= countAreaUnit * 4) colorShow[index].Color = Color.FromArgb(255, 30, 144, 255);
+                else if (item >= countAreaUnit * 3) colorShow[index].Color = Color.FromArgb(225, 30, 144, 255);
+                else if (item >= countAreaUnit * 2) colorShow[index].Color = Color.FromArgb(180, 30, 144, 255);
+                else if (item >= countAreaUnit * 1) colorShow[index].Color = Color.FromArgb(105, 30, 144, 255);
+                else colorShow[index].Color = Color.FromArgb(0, 30, 144, 255);
+                index++;
             }
 
         }

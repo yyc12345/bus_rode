@@ -12,6 +12,10 @@
             <ColumnDefinition Width="5"/>
         </Grid.ColumnDefinitions>
 
+        <!-- LinearGradientBrush container-->
+        <Grid x:Name="uiStopBrushGrid" Grid.Column="1">
+        </Grid>
+        
         <Path x:Name="uiSign" Stroke="Black" StrokeThickness="1" Fill="#e16f00"
               Height="10" Width="10" Grid.Column="0" VerticalAlignment="Center"
               Visibility="Collapsed">

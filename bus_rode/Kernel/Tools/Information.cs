@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bus_rode.Kernel.Tools
-{
-    public class ApplicationInformation
-    {
+namespace bus_rode.Kernel.Tools {
+    public class ApplicationInformation {
         /// <summary>
         /// 应用版本号
         /// </summary>
@@ -53,7 +51,13 @@ namespace bus_rode.Kernel.Tools
         /// <summary>
         /// 工作路径
         /// </summary>
-        public static string WorkingPath { get { return Environment.CurrentDirectory; } }
+        public static string WorkingPath {
+            get {
+                return Environment.CurrentDirectory[Environment.CurrentDirectory.Length - 1] == '\\' ?
+Environment.CurrentDirectory.Substring(0, Environment.CurrentDirectory.Length - 1) :
+Environment.CurrentDirectory;
+            }
+        }
         /// <summary>
         /// 支持的语言（RFC 4646 标识符）
         /// </summary>
