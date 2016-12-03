@@ -12,11 +12,11 @@ namespace bus_rode.Kernel.ResourcesReflection {
     public static class DllCommandCreator {
 
         public static string CreateCommandOfMonitorDll(enumCommandOfMonitorDll mainType, string parameter) {
-            return Enum.GetName(typeof(enumCommandOfMonitorDll), mainType) + parameter;
+            return Enum.GetName(typeof(enumCommandOfMonitorDll), mainType) + (parameter == "" ? "" : "@" + parameter);
         }
 
-        public static string CreateCommandOfResourcesDll(enumCommandOfResourcesDll mainType ,string parameter) {
-            return Enum.GetName(typeof(enumCommandOfResourcesDll), mainType) + parameter;
+        public static string CreateCommandOfResourcesDll(enumCommandOfResourcesDll mainType, string parameter) {
+            return Enum.GetName(typeof(enumCommandOfResourcesDll), mainType) + (parameter == "" ? "" : "@" + parameter);
         }
 
     }

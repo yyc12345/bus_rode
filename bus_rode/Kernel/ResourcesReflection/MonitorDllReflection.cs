@@ -177,6 +177,9 @@ namespace bus_rode.Kernel.ResourcesReflection {
             string result = "";
             while (true) {
 
+                //set command
+                Command.SetValue(ReflectionClass, DllCommandCreator.CreateCommandOfMonitorDll(enumCommandOfMonitorDll.GetLine, ""));
+
                 //尝试获取，获取失败返回
                 try {
                     result = MethodGetData.Invoke(ReflectionClass, null).ToString();
@@ -211,6 +214,9 @@ namespace bus_rode.Kernel.ResourcesReflection {
         /// <returns></returns>
         public List<Kernel.Management.UserInterfaceBlockStruct.LinePageRuntimeBlockStruct> ForceToGet() {
             if (DllState != enumDllReflectionState.Ready) throw new InvalidOperationException();
+
+            //set command
+            Command.SetValue(ReflectionClass, DllCommandCreator.CreateCommandOfMonitorDll(enumCommandOfMonitorDll.GetLine, ""));
 
             string result = "";
             try {

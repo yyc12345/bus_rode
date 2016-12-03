@@ -17,6 +17,7 @@ namespace bus_rode.Kernel.ResourcesReflection {
             DllRegion = "";
             DllVersion = "";
             DllWriter = "";
+            DllLanguage = "";
 
         }
 
@@ -24,27 +25,6 @@ namespace bus_rode.Kernel.ResourcesReflection {
         /// 完成初始化的反馈
         /// </summary>
         public Action FinishInitialization;
-
-        ///// <summary>
-        ///// 有新信息输入的反馈-line
-        ///// </summary>
-        //public Action<LineFileBlockStruct> NewDataWithLine;
-        ///// <summary>
-        ///// 有新信息输入的反馈-stop
-        ///// </summary>
-        //public Action<StopFileBlockStruct> NewDataWithStop;
-        ///// <summary>
-        ///// 有新信息输入的反馈-line list
-        ///// </summary>
-        //public Action<List<HaveLineFileBlockStruct>> NewDataWithLineList;
-        ///// <summary>
-        ///// 有新信息输入的反馈-stop list
-        ///// </summary>
-        //public Action<List<string>> NewDataWithStopList;
-        ///// <summary>
-        ///// 有新信息输入的反馈-subway
-        ///// </summary>
-        //public Action<SubwayFileBlockStruct> NewDataWithSubway;
 
         /// <summary>
         /// 往dll里面传入数据的命令行，存储指令在其中让dll处理之
@@ -83,6 +63,10 @@ namespace bus_rode.Kernel.ResourcesReflection {
         /// 版本
         /// </summary>
         public string DllVersion;
+        /// <summary>
+        /// 语言
+        /// </summary>
+        public string DllLanguage;
 
 
         /// <summary>
@@ -100,7 +84,7 @@ namespace bus_rode.Kernel.ResourcesReflection {
             //check basic function
             var ass = System.Reflection.Assembly.LoadFile(Kernel.Tools.SystemInformation.WorkingPath + @"\ResourcesDll.dll");
             Type tp;
-            FieldInfo dependVersion, region, writer, version, command;
+            FieldInfo dependVersion, region, writer, version, command, lang;
             MethodInfo initialize, getData;
             try {
                 tp = ass.GetType("BusRodeDll.ResourcesDll", true);
@@ -109,6 +93,7 @@ namespace bus_rode.Kernel.ResourcesReflection {
                 region = tp.GetField("DllRegion");
                 writer = tp.GetField("DllWriter");
                 version = tp.GetField("DllVersion");
+                lang = tp.GetField("DllLanguage");
 
                 command = tp.GetField("DllCommand");
 
@@ -138,6 +123,7 @@ namespace bus_rode.Kernel.ResourcesReflection {
             DllRegion = region.GetValue(ReflectionClass).ToString();
             DllWriter = writer.GetValue(ReflectionClass).ToString();
             DllVersion = version.GetValue(ReflectionClass).ToString();
+            DllLanguage = lang.GetValue(ReflectionClass).ToString();
 
             Command = command;
             MethodInitialize = initialize;
@@ -167,9 +153,13 @@ namespace bus_rode.Kernel.ResourcesReflection {
         /// <summary>
         /// 返回仅分割后的结果
         /// </summary>
+        /// <param name="command">命令，由生成器生成</param>
         /// <returns></returns>
-        public Task Read() {
+        public Task Read(string command) {
             return Task.Run(() => {
+
+                //set command
+                Command.SetValue(ReflectionClass, command);
 
                 string result = "";
                 try {
@@ -181,7 +171,7 @@ namespace bus_rode.Kernel.ResourcesReflection {
                 if (result == "") return new List<string>();
 
                 //set list
-                return new StringGroup(result,"@").ToList();
+                return new StringGroup(result, "@").ToList();
             });
         }
 
