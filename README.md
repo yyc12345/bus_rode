@@ -1,8 +1,7 @@
-# ![Icon](https://github.com/yyc12345/bus_rode/blob/master/icon.png) bus\_rode
+# ![Icon](icon.png) bus\_rode
 This is a convenient application which can monitor bus and show city's public traffic.  
 
----
-#### User enviroment  
+## User enviroment  
 
 **OS:** Windows 7 or over this\(NT kernel 6.1 or over this\)  
 **Runtime library:** .NET Framework 4.5  
@@ -11,15 +10,14 @@ This is a convenient application which can monitor bus and show city's public tr
 * Before you start using this application, you must download a dll which can be loaded by bus\_rode and provide local public traffic information.  
 * If the monitor dll of the city where you stay has been released. You can download it and load it to monitor bus. It is can be more convenient that you use this monitor dll.  
 
----
-#### Build enviroment  
+## Build enviroment  
 
-**IDE:** Visual Studio 2015 Update 2  
-**Language:** C\#\(C Sharp\)  
+**IDE:** Visual Studio 2017  
+**Language:** C\#  
 **Frame:** WPF  
 **Nuget packages:**  
 * MaterialDesignColors.1.1.3  
-* MaterialDesignThemes.2.0.1-ci644  
+* MaterialDesignThemes.2.2.0.725  
 
 *TIPS:*  
 * You must have a local bus resource or a dll that can get the bus and stop information to test this application.  
@@ -29,15 +27,14 @@ This is a convenient application which can monitor bus and show city's public tr
 * You must observe the LICENSE in the application which you fork this solution and continue developing, and the application's soure code and release file must include the LICENSE.  
 * If you have some problem on reading code. Don't worried. Because my solution is messy. Please calm down and completely read.  
 
----
-#### Recent plan  
+## Recent plan  
 
-* Finish ResourcesReflection class.  
-* Create a project which can show the unsloved issues on that main application crashed. The invoke which in main application, need use \#IF DEBUG, because take consideration into debug.  
 * Update the file which describe the command and output data's structure in MOD development.
-* Create 4 smaple of MOD development. 2 is Monitor dll. 2 is Resources dll. And the one is mini version. The other is full version which include the method of processing command.
+* Finish the translate model with 2 ways\(Google translate and Bing translate\)
+* Change the stype of SelectLine\/StopPage. Turn the result list into a new style which is like osu! online user page.
+* Finish HomePage
+* Finish the function that send message and show in MainWindow
+* Create global function which show Dialog applying Material Design style.
 
----
-#### License
-
-[MIT License](https://github.com/yyc12345/bus_rode/blob/master/LICENSE "MIT License")
+## Screenshot
+![screenshot](screenshot.png)

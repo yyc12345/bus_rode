@@ -6,13 +6,6 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 
-# Unknow rubbish folder
-WpfXamlDiagnosticsTap.pdb/
-DTAR_08E86330_4835_4B5C_9E5A_61F37AE1A077_DTAR/
-
-# Useless nuget packages src
-packages\MaterialDesignThemes.2.0.1-ci644/src/
-
 ## ------------------------Visual Studio normal settings---------------------------------------
 
 # User-specific files
