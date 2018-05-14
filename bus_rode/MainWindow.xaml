@@ -21,11 +21,16 @@
 
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
         <!-- 背景暗化-->
         <Grid Background="#5f000000"/>
-
+        
         <!-- debug文本-->
-        <Grid Width="300" Opacity="0.5" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+        <Grid Width="300" Grid.Row="1" Opacity="0.5" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="auto"/>
@@ -38,33 +43,52 @@
                 </Grid.ColumnDefinitions>
 
                 <materialDesign:PackIcon Foreground="White" Kind="Lock" Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Foreground="White" FontSize="20" Grid.Column="1" Text="CHMOSGroup 内部版本" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Foreground="White" FontSize="20" Grid.Column="1" Text="bus_rode Insider version" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
             
             <TextBlock x:Name="uiDebugVersionText" Grid.Row="1" Foreground="White" TextWrapping="Wrap" FontSize="16" Text=""/>
         </Grid>
 
         <!-- 主控件区域-->
-        <uiPage:LinePage/>
+        <uiPage:HomePage Grid.Row="1" />
 
         <!-- 左下通知区-->
-        <materialDesign:Chip x:Name="uiNotificationBk" HorizontalAlignment="Left" VerticalAlignment="Bottom" Opacity="0.7" Margin="5,0,0,5" Visibility="Collapsed">
+        <materialDesign:Chip Grid.Row="1" x:Name="uiNotificationBk" HorizontalAlignment="Left" VerticalAlignment="Bottom" Opacity="0.7" Margin="5,0,0,5" Visibility="Collapsed">
             <TextBlock x:Name="uiNotificationText" FontSize="14" Text=""/>
         </materialDesign:Chip>
 
-        <!-- 上部标题触控触发栏-->
-        <Grid x:Name="uiTitleTouchBar" Background="#00000000" Height="10" VerticalAlignment="Top" MouseEnter="fxTitleTouchBar_MouseEnter"/>
-
         <!-- 上部标题栏-->
-        <Grid x:Name="uiTitleBar" Height="32" VerticalAlignment="Top" Background="#5f000000" Visibility="Collapsed" MouseDown="fxTitleBar_MouseDown">
+        <Grid x:Name="uiTitleBar" Height="32" VerticalAlignment="Top" Background="#5f000000" MouseDown="fxTitleBar_MouseDown">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="uiTitle" Text="Bus_rode" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Margin="8,0,0,0"/>
+            <Grid Grid.Column="0" x:Name="uiTitleBack">
+                <Grid.Background >
+                    <SolidColorBrush x:Name="uiTitleBackColor" Color="#b48f8f8f"/>
+                </Grid.Background>
 
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Button Height="32" Background="#00000000" BorderThickness="0" HorizontalAlignment="Stretch">
+                    <materialDesign:PackIcon Kind="ArrowLeft" Height="20" Width="20" VerticalAlignment="Center"/>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="1" x:Name="uiTitleMenu">
+                <Grid.Background>
+                    <SolidColorBrush x:Name="uiTitleMenuColor" Color="#b48f8f8f"/>
+                </Grid.Background>
+
+                <Button Height="32" Background="#00000000" BorderThickness="0" HorizontalAlignment="Stretch">
+                    <materialDesign:PackIcon Kind="Menu" Height="20" Width="20" VerticalAlignment="Center"/>
+                </Button>
+            </Grid>
+
+            <TextBlock Grid.Column="2" x:Name="uiTitle" Text="Bus_rode" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Margin="8,0,0,0"/>
+
+            <StackPanel Grid.Column="3" Orientation="Horizontal">
                 <Button Height="32" Background="#00000000" BorderThickness="0" HorizontalAlignment="Right" Click="fxTitleMinimize_Click">
                     <materialDesign:PackIcon Kind="WindowMinimize" Height="20" Width="20" VerticalAlignment="Center"/>
                 </Button>

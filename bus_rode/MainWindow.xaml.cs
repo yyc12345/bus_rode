@@ -25,26 +25,15 @@ namespace bus_rode {
         public MainWindow() {
             InitializeComponent();
 
-            //计时器启动
-            uiTitleCloseTimer = new System.Windows.Threading.DispatcherTimer();
-            uiTitleCloseTimer.Interval = TimeSpan.FromSeconds(10);
-            uiTitleCloseTimer.Tick += fxTitleCloseTimer;
-
             //绑定事件
             Application.Current.Exit += fxApplication_Exit;
 
             //应用名显示
             uiTitle.Text = Kernel.Tools.ApplicationInformation.AppTitleName;
-            uiDebugVersionText.Text = "CHMOSGroup 机密" + Environment.NewLine +
-            "CHMOSGroup Copyright 2012-2016" + Environment.NewLine +
-            "该版本不应当向外界传播或发布，仅供内部测试，调试使用。将这个版本的程序的源码，界面设计及其他类型的截图，程序副本未经授权向外界传播，公布，发行将会在查明发布者后将其从CHMOSGroup内部强制离职并列入信任黑名单。具体内容参见《CHMOSGroup 协议》" + Environment.NewLine +
+            uiDebugVersionText.Text = "yyc12345 Copyright 2012-2018" + Environment.NewLine +
+            "This version should not be disseminated or released to the outside world. It is only for internal testing and debugging. The source code, interface design and other types of screenshots of this version of the program, copy of the program without authorization, will be cancelled after the publisher is identified." + Environment.NewLine +
             Kernel.Tools.ApplicationInformation.AppName + " " + Kernel.Tools.ApplicationInformation.AppBuild;
         }
-
-        /// <summary>
-        /// 关闭标题栏的计时器
-        /// </summary>
-        private System.Windows.Threading.DispatcherTimer uiTitleCloseTimer;
 
         /// <summary>
         /// 应用结束时的操作
@@ -54,28 +43,6 @@ namespace bus_rode {
         private void fxApplication_Exit(object sender, ExitEventArgs e) {
             //todo:结束所有线程和取消任务栏图标显示
 
-        }
-
-        /// <summary>
-        /// 展开工具栏的处理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void fxTitleTouchBar_MouseEnter(object sender, MouseEventArgs e) {
-            uiTitleTouchBar.Visibility = Visibility.Collapsed;
-            uiTitleBar.Visibility = Visibility.Visible;
-            uiTitleCloseTimer.Start();
-        }
-
-        /// <summary>
-        /// 到时间关闭标题栏的函数
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void fxTitleCloseTimer(object sender, EventArgs e) {
-            uiTitleTouchBar.Visibility = Visibility.Visible;
-            uiTitleBar.Visibility = Visibility.Collapsed;
-            uiTitleCloseTimer.Stop();
         }
 
         /// <summary>

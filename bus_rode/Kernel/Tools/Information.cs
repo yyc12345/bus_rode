@@ -24,12 +24,12 @@ namespace bus_rode.Kernel.Tools {
         /// <summary>
         /// 应用标题显示名称
         /// </summary>
-        public const string AppTitleName = "Public Traffic";
+        public const string AppTitleName = "bus_rode Helium";
 
         /// <summary>
         /// 应用最后更新时间
         /// </summary>
-        public const string AppUpdateDate = "17:52 2016/5/28";
+        public const string AppUpdateDate = "May 14, 2018";
 
         /// <summary>
         /// 应用编译版本数字
