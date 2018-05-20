@@ -28,7 +28,15 @@
         
         <!-- 背景暗化-->
         <Grid Background="#5f000000"/>
-        
+
+        <!-- 主控件区域-->
+        <uiPage:LinePage Grid.Row="1" />
+
+        <!-- 左下通知区-->
+        <materialDesign:Chip Grid.Row="1" x:Name="uiNotificationBk" HorizontalAlignment="Left" VerticalAlignment="Bottom" Opacity="0.7" Margin="5,0,0,5" Visibility="Collapsed">
+            <TextBlock x:Name="uiNotificationText" FontSize="14" Text=""/>
+        </materialDesign:Chip>
+
         <!-- debug文本-->
         <Grid Width="300" Grid.Row="1" Opacity="0.5" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Grid.RowDefinitions>
@@ -45,17 +53,9 @@
                 <materialDesign:PackIcon Foreground="White" Kind="Lock" Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Foreground="White" FontSize="20" Grid.Column="1" Text="bus_rode Insider version" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
-            
+
             <TextBlock x:Name="uiDebugVersionText" Grid.Row="1" Foreground="White" TextWrapping="Wrap" FontSize="16" Text=""/>
         </Grid>
-
-        <!-- 主控件区域-->
-        <uiPage:HomePage Grid.Row="1" />
-
-        <!-- 左下通知区-->
-        <materialDesign:Chip Grid.Row="1" x:Name="uiNotificationBk" HorizontalAlignment="Left" VerticalAlignment="Bottom" Opacity="0.7" Margin="5,0,0,5" Visibility="Collapsed">
-            <TextBlock x:Name="uiNotificationText" FontSize="14" Text=""/>
-        </materialDesign:Chip>
 
         <!-- 上部标题栏-->
         <Grid x:Name="uiTitleBar" Height="32" VerticalAlignment="Top" Background="#5f000000" MouseDown="fxTitleBar_MouseDown">

@@ -103,6 +103,12 @@
     <Compile Include="Kernel\FileIO\ResourcesFileCompression.cs" />
     <Compile Include="Kernel\Tools\StringGroup.cs" />
     <Compile Include="Tools\Win32.cs" />
+    <Compile Include="UserInterface\ControlPage\LinePageControlPage.xaml.cs">
+      <DependentUpon>LinePageControlPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\ControlPage\StopPageControlPage.xaml.cs">
+      <DependentUpon>StopPageControlPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\Converter.cs" />
     <Compile Include="UserInterface\Page\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
@@ -178,6 +184,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserInterface\ControlPage\LinePageControlPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\ControlPage\StopPageControlPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserInterface\Page\AboutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

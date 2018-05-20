@@ -17,72 +17,22 @@
         <converter:SliderMessageGridOpacity x:Key="sliderMessageGridOpacity"/>
         <converter:SliderMessageGridHeight x:Key="sliderMessageGridHeight"/>
 
-        <converter:WaterMarkVisibility x:Key="waterMarkVisibility"/>
     </UserControl.Resources>
 
     <Grid x:Name="uiLinePageBackground">
         <Grid.RowDefinitions>
-            <RowDefinition Height="56"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- head-->
-        <Grid Grid.Row="0" Background="{DynamicResource PrimaryHueDarkBrush}">
-            <!-- 特效-->
-            <Grid.Effect>
-                <DropShadowEffect Opacity="0.5" ShadowDepth="2" Direction="270" BlurRadius="10"/>
-            </Grid.Effect>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="56"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-
-            <Button Background="#00000000" BorderThickness="0" Height="56">
-                <materialDesign:PackIcon Kind="ArrowLeft" Height="32" Width="32" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
-            </Button>
-
-            <TextBlock Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Grid.Column="1" FontSize="24" Text="{DynamicResource langUILinePageTitle}" VerticalAlignment="Center"/>
-
-            <StackPanel Orientation="Horizontal" Grid.Column="3" Height="56">
-                <Button Background="#00000000" BorderThickness="0" Height="56" ToolTipService.Placement="Bottom" ToolTip="{DynamicResource langUILinePageSwitchLine}">
-                    <materialDesign:PackIcon Kind="Rotate3d" Height="32" Width="32" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
-                </Button>
-                <Button Background="#00000000" BorderThickness="0" Height="56" ToolTipService.Placement="Bottom" ToolTip="{DynamicResource langUILinePageSearchStopInLine}">
-                    <materialDesign:PackIcon Kind="Magnify" Height="32" Width="32" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
-                </Button>
-                <!-- search box-->
-                <Grid VerticalAlignment="Center" Width="200" Margin="0,0,24,0">
-                    <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Opacity="0.5"  Grid.Row="1" FontSize="16"
-                            Text="{DynamicResource langUILinePageSearchStopInLineWaterMark}" VerticalAlignment="Center"
-                            Visibility="{Binding ElementName=uiFilterText,Path=Text.IsEmpty,Converter={StaticResource waterMarkVisibility} }" RenderTransformOrigin="0.5,0.5">
-                        <TextBlock.RenderTransform>
-                            <SkewTransform AngleX="-30" CenterX="0" CenterY="0"/>
-                        </TextBlock.RenderTransform>
-                    </TextBlock>
-                    <TextBox x:Name="uiFilterText" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Grid.Row="1" FontSize="16"
-                            Text="" VerticalAlignment="Center"/>
-
-                </Grid>
-            </StackPanel>
-
-        </Grid>
-
-        <!-- bk color-->
-        <Grid Background="{DynamicResource PrimaryHueMidBrush}" Grid.Row="1" Grid.RowSpan="2"/>
-
         <!-- big title-->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="0">
             <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Margin="56,16,0,16" FontSize="24" Text="6路" VerticalAlignment="Center"/>
         </Grid>
 
         <!-- detail-->
-        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0,-1,0,0" 
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,-1,0,0" 
                     Height="{Binding ElementName=uiMainListScrollViewer,Path=ContentVerticalOffset,Converter={StaticResource sliderMessageGridHeight}}"
                     Opacity="{Binding ElementName=uiMainListScrollViewer,Path=ContentVerticalOffset,Converter={StaticResource sliderMessageGridOpacity}}">
 
@@ -94,9 +44,7 @@
 
         </StackPanel>
 
-        <ProgressBar Visibility="Collapsed" Grid.Row="3" BorderThickness="0" IsIndeterminate="True" Background="#00000000" BorderBrush="#00000000" Margin="0,-1,0,0"/>
-
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="28"/>
                 <RowDefinition Height="*"/>
@@ -270,23 +218,6 @@
 
                 </Grid>
             </ScrollViewer>
-
-            <!-- 悬浮按钮-->
-            <Grid Grid.ColumnSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
-                        Grid.Column="4" HorizontalAlignment="Left" Height="56" Width="56" Margin="0,-28,0,0" 
-                        ToolTip="{DynamicResource langUILinePageLineTransform}">
-                    <materialDesign:PackIcon Kind="SwapHorizontal" Height="32" Width="32"/>
-                </Button>
-
-            </Grid>
 
         </Grid>
 

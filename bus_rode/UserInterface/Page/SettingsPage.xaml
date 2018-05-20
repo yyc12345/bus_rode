@@ -16,13 +16,13 @@
     </UserControl.Resources>
 
     <Grid x:Name="uiSettingsPageBackground">
-        <Grid.RowDefinitions>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="56"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="{DynamicResource PrimaryHueDarkBrush}">
-            <!-- 特效-->
+            --><!-- 特效--><!--
             <Grid.Effect>
                 <DropShadowEffect Opacity="0.5" ShadowDepth="2" Direction="270" BlurRadius="10"/>
             </Grid.Effect>
@@ -39,9 +39,9 @@
 
             <TextBlock Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Grid.Column="1" FontSize="24" Text="{DynamicResource langUISettingsPageTitle}" VerticalAlignment="Center"/>
 
-        </Grid>
+        </Grid>-->
 
-        <ScrollViewer Grid.Row="1">
+        <ScrollViewer>
             <StackPanel x:Name="uiSettingMainContainer" Orientation="Vertical" HorizontalAlignment="Center" Width="{Binding ElementName=uiSettingsPageBackground,Path=ActualWidth,Converter={StaticResource middleListWidthConverter}}" Margin="0,0,-17,0">
 
 
